@@ -56,18 +56,20 @@
     background-image: radial-gradient(var(--color-line) 1px, transparent 1px);
     background-size: 22px 22px;
   }
-  /* Rise-in on scroll (paired with IntersectionObserver in BaseLayout) */
-  .rise {
+  /* Rise-in on scroll. Only hides when JS is active (html.js), so no-JS
+     users and crawlers always see the content. Paired with the
+     IntersectionObserver in BaseLayout. */
+  .js .rise {
     opacity: 0;
     transform: translateY(16px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   }
-  .rise.in {
+  .js .rise.in {
     opacity: 1;
     transform: translateY(0);
   }
   @media (prefers-reduced-motion: reduce) {
-    .rise { opacity: 1; transform: none; transition: none; }
+    .js .rise { opacity: 1; transform: none; transition: none; }
     html { scroll-behavior: auto; }
   }
 }
