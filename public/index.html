@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutortide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        scroll-behavior: smooth; /* Enables smooth scrolling for anchor links */
+      }
+      .hero-bg {
+        background-color: #f0f4f8; /* Light blue-gray background */
+      }
+      /* FIXED: The .nav-link.active class now uses standard CSS properties
+        because @apply does not work with the Tailwind CDN in a <style> tag.
+      */
+      .nav-link.active {
+        color: #2563eb; /* This is Tailwind's text-blue-600 */
+        font-weight: 600; /* This is Tailwind's font-semibold */
+      }
+      /* Custom animation for hero text */
+      .fade-in-up {
+        animation: fadeInUp 1s ease-out forwards;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      /* Staggered animation for cards */
+      .stagger-card {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s ease-out forwards;
+      }
+    </style>
+  </head>
+  <body class="bg-[#f1f1f1] text-gray-700">
+    <nav class="bg-white shadow-md fixed w-full z-50 top-0">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex items-center">
+            <a href="#home" class="text-2xl font-bold text-blue-600"
+              >Tutortide unTethered</a
+            >
+          </div>
+          <div class="hidden md:block">
+            <div
+              id="desktop-nav-links"
+              class="ml-10 flex items-baseline space-x-4"
+            >
+              <a
+                href="#home"
+                class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link"
+                >Home</a
+              >
+              <a
+                href="#about"
+                class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link"
+                >About Us</a
+              >
+              <a
+                href="#values"
+                class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link"
+                >Our Values</a
+              >
+              <a
+                href="#services"
+                class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link"
+                >Services</a
+              >
+              <a
+                href="#impact"
+                class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link"
+                >Social Impact</a
+              >
+              <a
+                href="#contact"
+                class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link"
+                >Contact</a
+              >
+            </div>
+          </div>
+          <div class="md:hidden">
+            <button
+              id="mobile-menu-button"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+            >
+              <span class="sr-only">Open main menu</span>
+              <i class="fas fa-bars fa-lg"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="md:hidden hidden" id="mobile-menu">
+        <div id="mobile-nav-links" class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a
+            href="#home"
+            class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link block"
+            >Home</a
+          >
+          <a
+            href="#about"
+            class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link block"
+            >About Us</a
+          >
+          <a
+            href="#values"
+            class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link block"
+            >Our Values</a
+          >
+          <a
+            href="#services"
+            class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link block"
+            >Services</a
+          >
+          <a
+            href="#impact"
+            class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link block"
+            >Social Impact</a
+          >
+          <a
+            href="#contact"
+            class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link block"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
+    <div class="max-w-[1200px] mx-auto bg-white shadow-xl">
+      <header
+        id="home"
+        class="hero-bg pt-20 md:pt-32 pb-16 md:pb-24 section-marker"
+      >
+        <div class="container mx-auto px-6 text-center">
+          <h1
+            class="text-4xl md:text-6xl font-bold text-gray-800 mb-6 fade-in-up"
+            style="animation-delay: 0.2s"
+          >
+            Tutortide unLimited
+          </h1>
+          <p
+            class="text-xl md:text-2xl text-blue-700 mb-10 fade-in-up"
+            style="animation-delay: 0.4s"
+          >
+            Empowering Through Secure Technologies & Social Innovation
+          </p>
+          <a
+            href="#about"
+            class="fade-in-up px-6 py-3 rounded-lg font-semibold text-white transition-colors duration-300 bg-blue-600 hover:bg-blue-700 text-lg"
+            style="animation-delay: 0.6s"
+            >Learn More</a
+          >
+        </div>
+      </header>
+      <section id="about" class="py-16 md:py-24 bg-white section-marker">
+        <div class="container mx-auto px-6">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800"
+          >
+            About Tutortide
+          </h2>
+          <br />
+          <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-x-12 gap-y-8">
+            <div
+              class="stagger-card flex items-start space-x-4 p-4 bg-gray-50 rounded-lg"
+              style="animation-delay: 0.1s"
+            >
+              <div class="text-blue-500 text-2xl mt-1">
+                <i class="fas fa-building"></i>
+              </div>
+              <div class="about-bullet-text">
+                <strong class="text-gray-700 font-semibold"
+                  >Social Enterprise (Est. 2024)</strong
+                >
+                <p class="text-gray-600 text-sm">
+                  Delivering innovative software solutions with a core focus on
+                  fostering positive societal change.
+                </p>
+              </div>
+            </div>
+            <div
+              class="stagger-card flex items-start space-x-4 p-4 bg-gray-50 rounded-lg"
+              style="animation-delay: 0.2s"
+            >
+              <div class="text-blue-500 text-2xl mt-1">
+                <i class="fas fa-users-cog"></i>
+              </div>
+              <div class="about-bullet-text">
+                <strong class="text-gray-700 font-semibold"
+                  >Empowering Communities</strong
+                >
+                <p class="text-gray-600 text-sm">
+                  Enabling individuals and communities to achieve their goals
+                  through accessible and impactful technology.
+                </p>
+              </div>
+            </div>
+            <div
+              class="stagger-card flex items-start space-x-4 p-4 bg-gray-50 rounded-lg"
+              style="animation-delay: 0.3s"
+            >
+              <div class="text-blue-500 text-2xl mt-1">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <div class="about-bullet-text">
+                <strong class="text-gray-700 font-semibold"
+                  >Enhancing User Experience</strong
+                >
+                <p class="text-gray-600 text-sm">
+                  Boosting productivity and satisfaction through cutting-edge
+                  technology and exceptional service delivery.
+                </p>
+              </div>
+            </div>
+            <div
+              class="stagger-card flex items-start space-x-4 p-4 bg-gray-50 rounded-lg"
+              style="animation-delay: 0.4s"
+            >
+              <div class="text-blue-500 text-2xl mt-1">
+                <i class="fas fa-bullseye"></i>
+              </div>
+              <div class="about-bullet-text">
+                <strong class="text-gray-700 font-semibold"
+                  >Leading with Impact</strong
+                >
+                <p class="text-gray-600 text-sm">
+                  Using software and AI to solve individuals, communities and
+                  corporate challenges with secure innovations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="values" class="py-16 md:py-24 bg-gray-100 section-marker">
+        <div class="container mx-auto px-6">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800"
+          >
+            Our Core Values
+          </h2>
+          <br />
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div
+              class="stagger-card bg-white rounded-xl shadow-lg p-6 md:p-8 transform transition-all duration-300 hover:scale-105"
+              style="animation-delay: 0.1s"
+            >
+              <div class="flex items-center justify-center mb-4">
+                <i class="fas fa-lightbulb fa-3x text-blue-500"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">
+                Innovation
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Embracing creativity to develop transformative products that
+                foster democratic principles, economic empowerment, and
+                equitable access to resources.
+              </p>
+            </div>
+            <div
+              class="stagger-card bg-white rounded-xl shadow-lg p-6 md:p-8 transform transition-all duration-300 hover:scale-105"
+              style="animation-delay: 0.2s"
+            >
+              <div class="flex items-center justify-center mb-4">
+                <i class="fas fa-check-circle fa-3x text-green-500"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">
+                Quality
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Prioritizing high-quality, robust, reliable, secure and
+                accessible solutions that exceed user expectations and serve all
+                users, especially in underserved communities.
+              </p>
+            </div>
+            <div
+              class="stagger-card bg-white rounded-xl shadow-lg p-6 md:p-8 transform transition-all duration-300 hover:scale-105"
+              style="animation-delay: 0.3s"
+            >
+              <div class="flex items-center justify-center mb-4">
+                <i class="fas fa-users fa-3x text-purple-500"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">
+                Community Focus
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Building lasting relationships based on trust and satisfaction,
+                extending this focus to communities by addressing their unique
+                social needs.
+              </p>
+            </div>
+            <div
+              class="stagger-card bg-white rounded-xl shadow-lg p-6 md:p-8 transform transition-all duration-300 hover:scale-105"
+              style="animation-delay: 0.4s"
+            >
+              <div class="flex items-center justify-center mb-4">
+                <i class="fas fa-shield-alt fa-3x text-yellow-500"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">
+                Integrity
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Conducting our affairs with unwavering demostratable intergrity,
+                ensuring ethical practices in promoting access to just, secure
+                and responsible technology.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="services" class="py-16 md:py-24 bg-white section-marker">
+        <div class="container mx-auto px-6">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800"
+          >
+            Products and Services
+          </h2>
+          <br />
+          <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+            <div
+              class="stagger-card bg-white rounded-xl shadow-lg p-6 md:p-8 transform transition-all duration-300 hover:scale-105"
+              style="animation-delay: 0.1s"
+            >
+              <div class="text-blue-500 mb-4 text-center">
+                <i class="fas fa-graduation-cap fa-3x"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">
+                Education Secure Software
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Developing Learning Management Systems, interactive learning
+                apps, and AI-powered examination tools to promote skills
+                development and equitable access to education.
+              </p>
+            </div>
+            <div
+              class="stagger-card bg-white rounded-xl shadow-lg p-6 md:p-8 transform transition-all duration-300 hover:scale-105"
+              style="animation-delay: 0.3s"
+            >
+              <div class="text-purple-500 mb-4 text-center">
+                <i class="fas fa-briefcase fa-3x"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">
+                Community Solutions
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Providing tailored solutions for social impact, project
+                management software, and accounting solutions designed to
+                enhance productivity and support ethical Community practices.
+              </p>
+            </div>
+            <div
+              class="stagger-card bg-white rounded-xl shadow-lg p-6 md:p-8 transform transition-all duration-300 hover:scale-105"
+              style="animation-delay: 0.2s"
+            >
+              <div class="text-green-500 mb-4 text-center">
+                <i class="fas fa-brain fa-3x"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">
+                Artificial Intelligence
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Leveraging AI for data analytics, AI-driven applications, and
+                pioneering free LLMs fine-tuned on local languages and customs
+                to enhance access to justice and information.
+              </p>
+            </div>
+
+            <div
+              class="stagger-card bg-white rounded-xl shadow-lg p-6 md:p-8 transform transition-all duration-300 hover:scale-105"
+              style="animation-delay: 0.2s"
+            >
+              <div class="text-yellow-500 mb-4 text-center">
+                <i class="fas fa-mobile-alt fa-3x"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">
+                Secure Applications Development
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Creating secure user-centric iOS and Android apps, custom
+                websites, e-commerce solutions, and web applications that serve
+                as platforms for social good.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        id="impact"
+        class="py-16 md:py-24 bg-blue-600 text-white section-marker"
+      >
+        <div class="container mx-auto px-6">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-center mb-8 !text-white"
+          >
+            Our Commitment
+          </h2>
+          <br />
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            <div
+              class="stagger-card bg-blue-700 p-6 rounded-lg shadow-md"
+              style="animation-delay: 0.1s"
+            >
+              <i class="fas fa-landmark fa-3x mb-3"></i>
+              <h3 class="text-xl font-semibold mb-2">
+                Democracy & Rule of Law
+              </h3>
+              <p class="text-sm opacity-90">
+                Promoting access to justice and information via free LLMs
+                trained on local languages and customs.
+              </p>
+            </div>
+            <div
+              class="stagger-card bg-blue-700 p-6 rounded-lg shadow-md"
+              style="animation-delay: 0.2s"
+            >
+              <i class="fas fa-equals fa-3x mb-3"></i>
+              <h3 class="text-xl font-semibold mb-2">
+                Equality & Non-Discrimination
+              </h3>
+              <p class="text-sm opacity-90">
+                Developing solutions for social causes, advocating for human
+                rights, diversity and fostering inclusion.
+              </p>
+            </div>
+            <div
+              class="stagger-card bg-blue-700 p-6 rounded-lg shadow-md"
+              style="animation-delay: 0.3s"
+            >
+              <i class="fas fa-balance-scale fa-3x mb-3"></i>
+              <h3 class="text-xl font-semibold mb-2">
+                Community & Human Rights
+              </h3>
+              <p class="text-sm opacity-90">
+                Adopting eco-friendly practices and focusing on ethical
+                community solutions for transparency and accountability.
+              </p>
+            </div>
+            <div
+              class="stagger-card bg-blue-700 p-6 rounded-lg shadow-md"
+              style="animation-delay: 0.4s"
+            >
+              <i class="fas fa-hand-holding-heart fa-3x mb-3"></i>
+              <h3 class="text-xl font-semibold mb-2">Economic Empowerment</h3>
+              <p class="text-sm opacity-90">
+                Supporting local educational programs and workshops, enhancing
+                skills development within communities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="contact" class="py-16 md:py-24 bg-gray-100 section-marker">
+        <div class="container mx-auto px-6">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800"
+          >
+            Get in Touch
+          </h2>
+          <br />
+          <div
+            class="max-w-2xl mx-auto bg-white p-8 md:p-10 rounded-xl shadow-xl"
+          >
+            <p class="text-center text-lg text-gray-600 mb-6">
+              Are you thinking of something interesting - get in touch we make
+              happen.
+            </p>
+            <div class="text-center space-y-4">
+              <p>
+                <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>
+                Worldwide
+              </p>
+              <p>
+                <i class="fas fa-globe mr-2 text-blue-500"></i>Website:
+                <a
+                  href="http://tutortide.online"
+                  target="_blank"
+                  class="text-blue-600 hover:underline"
+                  >Tutortide.Online</a
+                >
+              </p>
+              <p class="mt-6">
+                <a
+                  href="mailto:info@tutortide.com"
+                  target="_blank"
+                  class="px-6 py-3 rounded-lg font-semibold text-white transition-colors duration-300 bg-green-500 hover:bg-green-600"
+                  >Email: info@tutortide.online</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer class="bg-gray-800 text-white py-10">
+        <div class="container mx-auto px-6 text-center">
+          <p>
+            &copy; <span id="currentYear"></span> Tutortide Limited. All Rights
+            Reserved.
+          </p>
+          <p class="text-sm mt-1"></p>
+        </div>
+      </footer>
+    </div>
+
+    <button
+      id="backToTopBtn"
+      title="Go to top"
+      class="invisible opacity-0 fixed bottom-5 right-5 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 z-50"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobileNavLinksFromMenu = mobileMenu.querySelectorAll("a");
+
+        mobileMenuButton.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+          const icon = mobileMenuButton.querySelector("i");
+          if (mobileMenu.classList.contains("hidden")) {
+            icon.classList.remove("fa-times");
+            icon.classList.add("fa-bars");
+          } else {
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-times");
+          }
+        });
+
+        mobileNavLinksFromMenu.forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+            mobileMenuButton.querySelector("i").classList.remove("fa-times");
+            mobileMenuButton.querySelector("i").classList.add("fa-bars");
+          });
+        });
+
+        // --- Set Current Year in Footer ---
+        document.getElementById("currentYear").textContent =
+          new Date().getFullYear();
+
+        // --- Intersection Observer for Card Animations ---
+        const animatedElements = document.querySelectorAll(
+          ".stagger-card, .fade-in-up"
+        );
+        const animationObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                if (!entry.target.style.animationDelay) {
+                  entry.target.style.animationDelay =
+                    entry.target.dataset.delay || "0s";
+                }
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+                animationObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        animatedElements.forEach((el) => {
+          animationObserver.observe(el);
+        });
+
+        // --- FIXED: Back to Top Button Functionality ---
+        const backToTopBtn = document.getElementById("backToTopBtn");
+
+        // Show/hide button based on scroll position
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 400) {
+            backToTopBtn.classList.remove("invisible", "opacity-0");
+            backToTopBtn.classList.add("visible", "opacity-100");
+          } else {
+            backToTopBtn.classList.remove("visible", "opacity-100");
+            backToTopBtn.classList.add("invisible", "opacity-0");
+          }
+        });
+
+        // Scroll to top on click
+        backToTopBtn.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // --- FIXED: Active Navigation Link Highlighting (with IntersectionObserver) ---
+        const sections = document.querySelectorAll(".section-marker");
+        const allNavLinks = document.querySelectorAll("nav a.nav-link");
+
+        const highlightNav = (id) => {
+          allNavLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${id}`) {
+              link.classList.add("active");
+            }
+          });
+        };
+
+        const navObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                highlightNav(entry.target.id);
+              }
+            });
+          },
+          {
+            // The nav bar is 5rem (80px) high. We trigger when a section's
+            // top edge is 80px below the viewport's top.
+            rootMargin: "-80px 0px -40% 0px",
+          }
+        );
+
+        sections.forEach((section) => {
+          navObserver.observe(section);
+        });
+      });
+    </script>
+  </body>
+</html>
