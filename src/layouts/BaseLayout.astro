@@ -29,7 +29,6 @@ const fullTitle = title === site.name ? title : `${title} · ${site.name}`;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script is:inline>document.documentElement.classList.add("js");</script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
@@ -58,24 +57,5 @@ const fullTitle = title === site.name ? title : `${title} · ${site.name}`;
       <slot />
     </main>
     <Footer />
-
-    <script>
-      // Reveal .rise elements as they enter the viewport.
-      const els = document.querySelectorAll(".rise");
-      if (els.length) {
-        const io = new IntersectionObserver(
-          (entries) => {
-            for (const e of entries) {
-              if (e.isIntersecting) {
-                e.target.classList.add("in");
-                io.unobserve(e.target);
-              }
-            }
-          },
-          { threshold: 0.12 }
-        );
-        els.forEach((el) => io.observe(el));
-      }
-    </script>
   </body>
 </html>

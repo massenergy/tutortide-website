@@ -101,7 +101,7 @@ const commitments = [
     <SectionHeader eyebrow="What we do" title="Software that serves." />
     <div class="mt-12 grid gap-4 md:grid-cols-2">
       {capabilities.map((c) => (
-        <GridCell class="rise p-8">
+        <GridCell class="p-8">
           <div class="flex items-baseline justify-between">
             <MonoLabel>Capability</MonoLabel>
             <span class="font-mono text-xs text-ink-soft">{c.n}</span>
@@ -123,7 +123,7 @@ const commitments = [
       />
       <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {commitments.map((c) => (
-          <div class="rise border-l border-line pl-5">
+          <div class="border-l border-line pl-5">
             <h3 class="font-display text-lg font-bold">{c.title}</h3>
             <p class="mt-2 text-sm text-ink-soft">{c.body}</p>
           </div>
