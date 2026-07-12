@@ -1,0 +1,20 @@
+---
+import CornerTicks from "./CornerTicks.astro";
+// Bordered modular grid cell with corner-tick brackets.
+interface Props {
+  ticks?: boolean;          // show corner ticks
+  tickColor?: string;
+  class?: string;
+  as?: string;              // element tag (div, a, li…)
+  href?: string;
+}
+const { ticks = true, tickColor = "var(--color-accent)", class: className = "", as = "div", href } = Astro.props;
+const Tag = href ? "a" : as;
+---
+<Tag
+  href={href}
+  class:list={["relative block border border-line bg-surface", className]}
+>
+  {ticks && <CornerTicks color={tickColor} />}
+  <slot />
+</Tag>

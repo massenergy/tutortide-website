@@ -1,0 +1,123 @@
+---
+import { site, companyNav, products } from "../data/site";
+import CornerTicks from "./CornerTicks.astro";
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path.startsWith(href);
+---
+<header class="sticky top-0 z-50 border-b border-line bg-canvas/90 backdrop-blur">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
+    <a href="/" class="font-display text-xl font-bold tracking-tight">
+      {site.name}<span class="text-accent">.</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <div class="hidden items-center gap-8 md:flex">
+      {companyNav.map((l) => (
+        <a
+          href={l.href}
+          class:list={[
+            "font-mono text-xs uppercase tracking-widest transition-colors hover:text-accent",
+            isActive(l.href) ? "text-accent" : "text-ink-soft",
+          ]}
+        >
+          {l.name}
+        </a>
+      ))}
+      <div class="relative" data-products-menu>
+        <button
+          type="button"
+          class="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-ink transition-colors hover:text-accent"
+          aria-expanded="false"
+          aria-haspopup="true"
+          data-products-toggle
+        >
+          Launch <span class="text-accent" data-caret>+</span>
+        </button>
+        <div
+          class="absolute right-0 mt-3 hidden w-72 border border-line bg-surface p-3 shadow-lg"
+          data-products-panel
+        >
+          <div class="grid gap-2">
+            {products.map((p) => (
+              <a
+                href={p.slug}
+                class="group relative block border border-line px-4 py-3 transition-colors hover:border-accent"
+              >
+                <CornerTicks color="var(--color-accent)" />
+                <span class="font-display font-bold">{p.name}</span>
+                <span class="mono-label mt-0.5 block">{p.blurb}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile toggle -->
+    <button
+      type="button"
+      class="md:hidden font-mono text-xs uppercase tracking-widest"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-mobile-toggle
+    >
+      Menu
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden border-t border-line bg-surface px-5 py-6 md:hidden">
+    <div class="mb-6 flex flex-col gap-4">
+      {companyNav.map((l) => (
+        <a href={l.href} class="font-mono text-sm uppercase tracking-widest text-ink-soft">
+          {l.name}
+        </a>
+      ))}
+    </div>
+    <p class="mono-label mb-3">Products</p>
+    <div class="grid grid-cols-2 gap-3">
+      {products.map((p) => (
+        <a href={p.slug} class="group relative block border border-line px-3 py-3">
+          <CornerTicks color="var(--color-accent)" />
+          <span class="font-display text-sm font-bold">{p.name}</span>
+          <span class="mono-label mt-0.5 block">{p.blurb}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</header>
+
+<script>
+  // Products dropdown (desktop)
+  const wrap = document.querySelector("[data-products-menu]");
+  const toggle = document.querySelector("[data-products-toggle]");
+  const panel = document.querySelector("[data-products-panel]");
+  const caret = document.querySelector("[data-caret]");
+  const closeMenu = () => {
+    panel?.classList.add("hidden");
+    toggle?.setAttribute("aria-expanded", "false");
+    if (caret) caret.textContent = "+";
+  };
+  toggle?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const open = panel?.classList.toggle("hidden") === false;
+    toggle.setAttribute("aria-expanded", String(open));
+    if (caret) caret.textContent = open ? "×" : "+";
+  });
+  document.addEventListener("click", (e) => {
+    if (wrap && !wrap.contains(e.target as Node)) closeMenu();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+
+  // Mobile menu
+  const mToggle = document.querySelector("[data-mobile-toggle]");
+  const mMenu = document.getElementById("mobile-menu");
+  mToggle?.addEventListener("click", () => {
+    const open = mMenu?.classList.toggle("hidden") === false;
+    mToggle.setAttribute("aria-expanded", String(open));
+    mToggle.textContent = open ? "Close" : "Menu";
+  });
+</script>

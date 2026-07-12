@@ -1,0 +1,48 @@
+---
+import { site, companyNav, products } from "../data/site";
+const year = new Date().getFullYear();
+const numbered = [...companyNav, ...products.map((p) => ({ name: p.name, href: p.slug }))];
+---
+<footer class="border-t border-line bg-canvas">
+  <div class="mx-auto max-w-7xl px-5 py-16 md:px-8">
+    <div class="grid gap-12 md:grid-cols-12">
+      <div class="md:col-span-5">
+        <a href="/" class="font-display text-2xl font-bold tracking-tight">
+          {site.name}<span class="text-accent">.</span>
+        </a>
+        <p class="mt-4 max-w-sm text-sm text-ink-soft">{site.tagline}</p>
+      </div>
+
+      <nav class="md:col-span-4">
+        <p class="mono-label mb-4">Index</p>
+        <ul class="space-y-2">
+          {numbered.map((l, i) => (
+            <li class="flex items-baseline gap-3">
+              <span class="font-mono text-xs text-ink-soft">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <a href={l.href} class="text-sm transition-colors hover:text-accent">
+                {l.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="md:col-span-3">
+        <p class="mono-label mb-4">Contact</p>
+        <a
+          href={`mailto:${site.email}`}
+          class="text-sm transition-colors hover:text-accent"
+        >
+          {site.email}
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-16 flex flex-col gap-2 border-t border-line pt-6 md:flex-row md:items-center md:justify-between">
+      <p class="mono-label">© {year} Tutortide Limited</p>
+      <p class="mono-label">Empowering through secure technology &amp; social innovation</p>
+    </div>
+  </div>
+</footer>

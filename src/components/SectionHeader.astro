@@ -1,0 +1,22 @@
+---
+import MonoLabel from "./MonoLabel.astro";
+// Conductor two-column pattern: big grotesque heading left, support text right.
+interface Props {
+  eyebrow?: string;
+  title: string;
+  support?: string;
+  class?: string;
+}
+const { eyebrow, title, support, class: className = "" } = Astro.props;
+---
+<div class:list={["grid gap-6 md:grid-cols-12 md:gap-10 items-start", className]}>
+  <div class="md:col-span-7">
+    {eyebrow && <MonoLabel class="mb-4 block">{eyebrow}</MonoLabel>}
+    <h2 class="text-3xl md:text-5xl font-bold text-ink">{title}</h2>
+  </div>
+  {support && (
+    <p class="md:col-span-5 text-ink-soft text-base md:text-lg leading-relaxed md:pt-2">
+      {support}
+    </p>
+  )}
+</div>
