@@ -8,7 +8,7 @@ interface Props {
   delay?: string;  // negative animation-delay to phase-offset rows
   speed?: string;  // cycle duration
 }
-const { label, value, delay = "0s", speed = "8s" } = Astro.props;
+const { label, value, delay = "0s", speed = "11s" } = Astro.props;
 const clamp = (n: number) => Math.max(6, Math.min(96, n));
 const min = clamp(value - 16);
 const max = clamp(value + 9);

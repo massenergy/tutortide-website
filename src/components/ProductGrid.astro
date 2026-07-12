@@ -8,7 +8,7 @@ const { class: className = "" } = Astro.props;
 ---
 <div class:list={["relative", className]}>
   <!-- Connective thread behind the row: shows through the gaps between cards (desktop). -->
-  <Connector class="absolute inset-x-0 top-1/2 z-0 hidden h-[6px] lg:block" speed="10s" />
+  <Connector class="absolute inset-x-0 top-1/2 z-0 hidden h-[6px] lg:block" speed="14s" />
   <div class="relative z-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
     {products.map((p, i) => (
       <GridCell href={p.slug} travel index={i} class="p-6 transition-colors hover:border-accent">

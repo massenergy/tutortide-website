@@ -24,7 +24,7 @@ const {
 } = Astro.props;
 const Tag = href ? "a" : as;
 const even = index % 2 === 0;
-const speed = even ? "9s" : "11s";
+const speed = even ? "12s" : "15s";
 const phase = `-${(index % 4) * 2}s`;
 // Even cards: top L→R, bottom R→L. Odd cards: swapped, for visible alternation.
 const topClass = even ? "m-travel" : "m-travel-rev";
