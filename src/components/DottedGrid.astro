@@ -1,0 +1,8 @@
+---
+// Section wrapper with the dotted-grid background texture.
+interface Props { class?: string; }
+const { class: className = "" } = Astro.props;
+---
+<div class:list={["dotted-grid", className]}>
+  <slot />
+</div>

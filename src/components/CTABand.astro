@@ -1,0 +1,32 @@
+---
+import MonoLabel from "./MonoLabel.astro";
+import Button from "./Button.astro";
+// Full-bleed royal-blue CTA band with corner registration marks.
+interface Props {
+  eyebrow?: string;
+  title: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+const { eyebrow = "Get in touch", title, ctaLabel = "Request a demo", ctaHref = "/contact" } = Astro.props;
+---
+<section class="bg-accent text-white">
+  <div class="relative mx-auto max-w-7xl px-5 py-20 text-center md:px-8 md:py-28">
+    <!-- corner registration marks -->
+    <span class="pointer-events-none absolute left-5 top-8 h-4 w-4 border-l border-t border-white/40 md:left-8"></span>
+    <span class="pointer-events-none absolute right-5 top-8 h-4 w-4 border-r border-t border-white/40 md:right-8"></span>
+    <span class="pointer-events-none absolute bottom-8 left-5 h-4 w-4 border-b border-l border-white/40 md:left-8"></span>
+    <span class="pointer-events-none absolute bottom-8 right-5 h-4 w-4 border-b border-r border-white/40 md:right-8"></span>
+
+    {eyebrow && <p class="mb-6 font-mono text-xs uppercase tracking-widest text-white/70">{eyebrow}</p>}
+    <h2 class="mx-auto max-w-3xl text-3xl font-bold md:text-5xl">{title}</h2>
+    <div class="mt-10 flex justify-center">
+      <a
+        href={ctaHref}
+        class="inline-flex items-center gap-2 border border-white bg-white px-8 py-4 font-mono text-xs uppercase tracking-widest text-accent transition-colors hover:bg-transparent hover:text-white"
+      >
+        {ctaLabel}
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,142 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import MonoLabel from "../components/MonoLabel.astro";
+import GridCell from "../components/GridCell.astro";
+import StatNumber from "../components/StatNumber.astro";
+import DottedGrid from "../components/DottedGrid.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import Faq from "../components/Faq.astro";
+import CTABand from "../components/CTABand.astro";
+import type { ProductContent } from "../data/products-content";
+
+interface Props { product: ProductContent; }
+const { product: p } = Astro.props;
+
+const productLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: p.name,
+  description: p.seoDescription,
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  publisher: { "@type": "Organization", name: "Tutortide Limited" },
+};
+---
+<BaseLayout title={p.seoTitle} description={p.seoDescription} jsonLd={productLd}>
+  <!-- Hero -->
+  <section class="border-b border-line">
+    <div class="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-12 md:px-8 md:py-24">
+      <div class="md:col-span-7">
+        <MonoLabel class="mb-6 block">{p.eyebrow}</MonoLabel>
+        <h1 class="text-4xl font-bold leading-[1.05] md:text-6xl">{p.heroTitle}</h1>
+        <p class="mt-8 max-w-xl text-lg text-ink-soft">{p.heroSubhead}</p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          {p.launch.map((cta) => (
+            <a
+              href={cta.url}
+              target="_blank"
+              rel="noopener"
+              class:list={[
+                "inline-flex items-center gap-2 border px-6 py-3 font-mono text-xs uppercase tracking-widest transition-colors",
+                cta.primary
+                  ? "border-accent bg-accent text-white hover:bg-accent-hover"
+                  : "border-ink bg-transparent text-ink hover:bg-ink hover:text-white",
+              ]}
+            >
+              {cta.label} ↗
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {p.readout && (
+        <div class="md:col-span-5">
+          <GridCell class="h-full p-6">
+            <MonoLabel>{p.readoutLabel}</MonoLabel>
+            <div class="mt-6 space-y-4 font-mono text-xs text-ink-soft">
+              {p.readout.map((line, i) => (
+                <div class:list={["flex items-center justify-between", i < p.readout!.length - 1 && "border-b border-line pb-3"]}>
+                  <span>{line.label}</span>
+                  <span class="text-accent">{line.meter}</span>
+                </div>
+              ))}
+            </div>
+          </GridCell>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Stats -->
+  {p.stats && (
+    <DottedGrid class="border-b border-line">
+      <section class="mx-auto max-w-7xl px-5 py-16 md:px-8">
+        <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+          {p.stats.map((s) => <StatNumber value={s.value} caption={s.caption} />)}
+        </div>
+      </section>
+    </DottedGrid>
+  )}
+
+  <!-- Capability groups -->
+  {p.capabilityGroups.map((group, gi) => (
+    <section class:list={["mx-auto max-w-7xl px-5 py-20 md:px-8", gi % 2 === 1 && "border-y border-line bg-surface"]}>
+      <SectionHeader eyebrow={group.eyebrow} title={group.title} support={group.support} />
+      <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {group.items.map((item, i) => (
+          <GridCell class="p-6">
+            <div class="flex items-baseline justify-between">
+              <MonoLabel>{group.eyebrow}</MonoLabel>
+              <span class="font-mono text-xs text-ink-soft">{String(i + 1).padStart(2, "0")}</span>
+            </div>
+            <h3 class="mt-4 text-xl font-bold">{item.title}</h3>
+            <p class="mt-3 text-sm text-ink-soft">{item.body}</p>
+          </GridCell>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <!-- Feature deep-dives -->
+  {p.features && (
+    <section class="border-t border-line">
+      <div class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+        <SectionHeader eyebrow="Deep dive" title="How it works." />
+        <div class="mt-12 divide-y divide-line border-y border-line">
+          {p.features.map((f, i) => (
+            <div class="grid gap-4 py-8 md:grid-cols-12">
+              <span class="font-mono text-xs text-ink-soft md:col-span-1">{String(i + 1).padStart(2, "0")}</span>
+              <h3 class="font-display text-2xl font-bold md:col-span-4">{f.title}</h3>
+              <p class="text-ink-soft md:col-span-7">{f.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Pricing + FAQ -->
+  <section class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+    <div class="grid gap-12 md:grid-cols-12">
+      {p.pricingNote && (
+        <div class="md:col-span-5">
+          <MonoLabel class="mb-4 block">Pricing</MonoLabel>
+          <p class="font-display text-2xl font-bold leading-snug">{p.pricingNote}</p>
+        </div>
+      )}
+      {p.faqs && (
+        <div class:list={[p.pricingNote ? "md:col-span-7" : "md:col-span-12"]}>
+          <MonoLabel class="mb-6 block">FAQ</MonoLabel>
+          <Faq items={p.faqs} />
+        </div>
+      )}
+    </div>
+  </section>
+
+  <CTABand
+    eyebrow={p.name}
+    title={p.ctaTitle}
+    ctaLabel={p.ctaLabel ?? p.launch[0].label}
+    ctaHref={p.launch[0].url}
+  />
+</BaseLayout>

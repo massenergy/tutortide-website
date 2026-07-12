@@ -1,0 +1,41 @@
+---
+interface Props {
+  href?: string;
+  variant?: "solid" | "outline";
+  mono?: boolean;          // uppercase mono label styling
+  class?: string;
+  full?: boolean;          // full-width bar
+  target?: string;
+  rel?: string;
+}
+const {
+  href,
+  variant = "solid",
+  mono = true,
+  class: className = "",
+  full = false,
+  target,
+  rel,
+} = Astro.props;
+
+const base =
+  "inline-flex items-center justify-center gap-2 px-6 py-3 border transition-colors duration-200";
+const variants = {
+  solid:
+    "bg-accent text-white border-accent hover:bg-accent-hover",
+  outline:
+    "bg-transparent text-ink border-ink hover:bg-ink hover:text-white",
+};
+const label = mono
+  ? "font-mono uppercase tracking-widest text-xs"
+  : "font-medium text-sm";
+const Tag = href ? "a" : "button";
+---
+<Tag
+  href={href}
+  target={target}
+  rel={rel}
+  class:list={[base, variants[variant], label, full && "w-full", className]}
+>
+  <slot />
+</Tag>

@@ -1,0 +1,14 @@
+---
+interface Props {
+  value: string;     // e.g. "10x", "932", "98%"
+  caption: string;   // mono caption under the number
+  class?: string;
+}
+const { value, caption, class: className = "" } = Astro.props;
+---
+<div class:list={["flex flex-col", className]}>
+  <span class="font-display font-bold text-accent text-5xl md:text-6xl leading-none tracking-tight">
+    {value}
+  </span>
+  <span class="mono-label mt-3">{caption}</span>
+</div>

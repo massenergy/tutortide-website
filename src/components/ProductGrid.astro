@@ -1,0 +1,20 @@
+---
+import GridCell from "./GridCell.astro";
+import MonoLabel from "./MonoLabel.astro";
+import { products } from "../data/site";
+interface Props { class?: string; }
+const { class: className = "" } = Astro.props;
+---
+<div class:list={["grid gap-4 sm:grid-cols-2 lg:grid-cols-4", className]}>
+  {products.map((p, i) => (
+    <GridCell href={p.slug} class="p-6 transition-colors hover:border-accent">
+      <div class="flex items-center justify-between">
+        <MonoLabel>Product</MonoLabel>
+        <span class="font-mono text-xs text-ink-soft">{String(i + 1).padStart(2, "0")}</span>
+      </div>
+      <h3 class="mt-4 text-2xl font-bold">{p.name}</h3>
+      <p class="mt-2 text-sm text-ink-soft">{p.blurb}</p>
+      <span class="mono-label mt-8 inline-block text-accent">Explore →</span>
+    </GridCell>
+  ))}
+</div>

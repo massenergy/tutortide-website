@@ -1,0 +1,141 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MonoLabel from "../components/MonoLabel.astro";
+import Button from "../components/Button.astro";
+import GridCell from "../components/GridCell.astro";
+import StatNumber from "../components/StatNumber.astro";
+import DottedGrid from "../components/DottedGrid.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import ProductGrid from "../components/ProductGrid.astro";
+import CTABand from "../components/CTABand.astro";
+
+const capabilities = [
+  {
+    n: "01",
+    title: "Education secure software",
+    body: "Learning management systems, interactive learning apps, and AI-powered examination tools that widen equitable access to education.",
+  },
+  {
+    n: "02",
+    title: "Artificial intelligence",
+    body: "Data analytics, AI-driven applications, and free LLMs fine-tuned on local languages and customs to widen access to justice and information.",
+  },
+  {
+    n: "03",
+    title: "Community solutions",
+    body: "Project management and accounting software built for social impact, transparency, and ethical community practice.",
+  },
+  {
+    n: "04",
+    title: "Secure applications",
+    body: "User-centric iOS and Android apps, custom websites, e-commerce, and web applications that serve as platforms for social good.",
+  },
+];
+
+const commitments = [
+  { title: "Democracy & rule of law", body: "Access to justice and information via free LLMs trained on local languages and customs." },
+  { title: "Equality & non-discrimination", body: "Solutions for social causes, human rights, diversity, and inclusion." },
+  { title: "Community & human rights", body: "Eco-friendly practice and ethical community solutions for accountability." },
+  { title: "Economic empowerment", body: "Local education programs and workshops that build skills within communities." },
+];
+---
+<BaseLayout
+  title="Tutortide"
+  description="Tutortide Limited builds secure education software, AI, and community solutions for positive social impact. Explore Jinjing, Nyokavi, Waterpro, and Tundamoto."
+>
+  <!-- Hero -->
+  <section class="border-b border-line">
+    <div class="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
+      <div class="md:col-span-7">
+        <MonoLabel class="mb-6 block">Social enterprise · Est. 2024</MonoLabel>
+        <h1 class="text-4xl font-bold leading-[1.03] md:text-6xl">
+          Secure technology,<br />built for social impact.
+        </h1>
+        <p class="mt-8 max-w-xl text-lg text-ink-soft">
+          Tutortide builds software and AI that solve real problems for individuals,
+          communities, and organisations — with security and social good at the core.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <Button href="/products" variant="solid">Explore products</Button>
+          <Button href="/about" variant="outline">About us</Button>
+        </div>
+      </div>
+      <div class="md:col-span-5">
+        <GridCell class="h-full p-6">
+          <MonoLabel>Processing // impact</MonoLabel>
+          <div class="mt-6 space-y-4 font-mono text-xs text-ink-soft">
+            <div class="flex justify-between border-b border-line pb-3"><span>Education</span><span class="text-accent">▓▓▓▓▓▓▓░░</span></div>
+            <div class="flex justify-between border-b border-line pb-3"><span>Artificial intelligence</span><span class="text-accent">▓▓▓▓▓▓░░░</span></div>
+            <div class="flex justify-between border-b border-line pb-3"><span>Community solutions</span><span class="text-accent">▓▓▓▓▓▓▓▓░</span></div>
+            <div class="flex justify-between"><span>Secure applications</span><span class="text-accent">▓▓▓▓▓▓▓░░</span></div>
+          </div>
+        </GridCell>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+    <SectionHeader
+      eyebrow="Our products"
+      title="Four products, one company."
+      support="Each product has its own landing page and app. Explore what we build, then launch the app."
+    />
+    <ProductGrid class="mt-12" />
+  </section>
+
+  <!-- Stat band -->
+  <DottedGrid class="border-y border-line">
+    <section class="mx-auto max-w-7xl px-5 py-16 md:px-8">
+      <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+        <StatNumber value="4" caption="Products shipped" />
+        <StatNumber value="2024" caption="Founded" />
+        <StatNumber value="100%" caption="Security-first" />
+        <StatNumber value="∞" caption="Social impact" />
+      </div>
+    </section>
+  </DottedGrid>
+
+  <!-- Capabilities -->
+  <section class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+    <SectionHeader eyebrow="What we do" title="Software that serves." />
+    <div class="mt-12 grid gap-4 md:grid-cols-2">
+      {capabilities.map((c) => (
+        <GridCell class="p-8">
+          <div class="flex items-baseline justify-between">
+            <MonoLabel>Capability</MonoLabel>
+            <span class="font-mono text-xs text-ink-soft">{c.n}</span>
+          </div>
+          <h3 class="mt-4 text-2xl font-bold">{c.title}</h3>
+          <p class="mt-3 text-ink-soft">{c.body}</p>
+        </GridCell>
+      ))}
+    </div>
+  </section>
+
+  <!-- Commitment -->
+  <section class="border-t border-line bg-surface">
+    <div class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+      <SectionHeader
+        eyebrow="Our commitment"
+        title="Technology with a conscience."
+        support="We measure success by the good our software does, not just the problems it solves."
+      />
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {commitments.map((c) => (
+          <div class="border-l border-line pl-5">
+            <h3 class="font-display text-lg font-bold">{c.title}</h3>
+            <p class="mt-2 text-sm text-ink-soft">{c.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    eyebrow="Let's build"
+    title="Thinking of something interesting? We make it happen."
+    ctaLabel="Get in touch"
+    ctaHref="/contact"
+  />
+</BaseLayout>

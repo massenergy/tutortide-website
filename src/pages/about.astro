@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MonoLabel from "../components/MonoLabel.astro";
+import GridCell from "../components/GridCell.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import CTABand from "../components/CTABand.astro";
+
+const about = [
+  { title: "Social enterprise, est. 2024", body: "Innovative software solutions with a core focus on fostering positive societal change." },
+  { title: "Empowering communities", body: "Enabling individuals and communities to reach their goals through accessible, impactful technology." },
+  { title: "Enhancing user experience", body: "Boosting productivity and satisfaction with cutting-edge technology and exceptional service." },
+  { title: "Leading with impact", body: "Using software and AI to solve individual, community, and corporate challenges with secure innovation." },
+];
+
+const values = [
+  { title: "Innovation", body: "Creativity that develops transformative products fostering democratic principles, economic empowerment, and equitable access." },
+  { title: "Quality", body: "Robust, reliable, secure, and accessible solutions that exceed expectations and serve underserved communities." },
+  { title: "Community focus", body: "Lasting relationships built on trust, extended to communities by addressing their unique social needs." },
+  { title: "Integrity", body: "Demonstrable integrity and ethical practice in promoting just, secure, and responsible technology." },
+];
+---
+<BaseLayout
+  title="About"
+  description="Tutortide Limited is a social enterprise building secure education software, AI, and community solutions for positive social impact."
+>
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+      <MonoLabel class="mb-6 block">About Tutortide</MonoLabel>
+      <h1 class="max-w-4xl text-4xl font-bold leading-[1.05] md:text-6xl">
+        A social enterprise using technology for good.
+      </h1>
+      <p class="mt-8 max-w-2xl text-lg text-ink-soft">
+        Founded in 2024, Tutortide delivers secure software and AI with a core focus on
+        positive societal change — for individuals, communities, and organisations.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+    <SectionHeader eyebrow="Who we are" title="What drives us." />
+    <div class="mt-12 grid gap-4 md:grid-cols-2">
+      {about.map((a) => (
+        <GridCell class="p-8">
+          <h3 class="text-xl font-bold">{a.title}</h3>
+          <p class="mt-3 text-ink-soft">{a.body}</p>
+        </GridCell>
+      ))}
+    </div>
+  </section>
+
+  <section class="border-t border-line bg-surface">
+    <div class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+      <SectionHeader
+        eyebrow="Our core values"
+        title="How we work."
+        support="Four principles guide every product we build and every relationship we keep."
+      />
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {values.map((v, i) => (
+          <div class="border-l border-line pl-5">
+            <span class="font-mono text-xs text-ink-soft">{String(i + 1).padStart(2, "0")}</span>
+            <h3 class="mt-2 font-display text-lg font-bold">{v.title}</h3>
+            <p class="mt-2 text-sm text-ink-soft">{v.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABand title="Want to build something with us?" ctaLabel="Get in touch" ctaHref="/contact" />
+</BaseLayout>

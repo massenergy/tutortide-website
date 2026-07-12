@@ -1,0 +1,39 @@
+---
+// Four L-shaped registration-mark brackets in the corners of the parent.
+// Parent must be `relative`. Conductor's signature grid-cell motif.
+interface Props {
+  color?: string;   // CSS color for the ticks
+  size?: number;    // arm length in px
+}
+const { color = "var(--color-accent)", size = 10 } = Astro.props;
+const s = `${size}px`;
+---
+<span class="pointer-events-none absolute inset-0" aria-hidden="true">
+  <span class="tick tl"></span>
+  <span class="tick tr"></span>
+  <span class="tick bl"></span>
+  <span class="tick br"></span>
+</span>
+
+<style define:vars={{ color, s }}>
+  .tick { position: absolute; width: var(--s); height: var(--s); }
+  .tick::before, .tick::after {
+    content: ""; position: absolute; background: var(--color);
+  }
+  /* horizontal arm */
+  .tick::before { width: var(--s); height: 1.5px; }
+  /* vertical arm */
+  .tick::after { width: 1.5px; height: var(--s); }
+  .tl { top: -1px; left: -1px; }
+  .tl::before { top: 0; left: 0; }
+  .tl::after { top: 0; left: 0; }
+  .tr { top: -1px; right: -1px; }
+  .tr::before { top: 0; right: 0; }
+  .tr::after { top: 0; right: 0; }
+  .bl { bottom: -1px; left: -1px; }
+  .bl::before { bottom: 0; left: 0; }
+  .bl::after { bottom: 0; left: 0; }
+  .br { bottom: -1px; right: -1px; }
+  .br::before { bottom: 0; right: 0; }
+  .br::after { bottom: 0; right: 0; }
+</style>
