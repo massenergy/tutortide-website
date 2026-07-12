@@ -1,0 +1,22 @@
+---
+// Animated fill bar for the hero "processing" readouts. Gently breathes around
+// `value` on a slow loop; under prefers-reduced-motion it rests statically at
+// `value`%. GPU-friendly (animates width on a small fixed-width track).
+interface Props {
+  label: string;
+  value: number;   // resting fill %, 0-100
+  delay?: string;  // negative animation-delay to phase-offset rows
+  speed?: string;  // cycle duration
+}
+const { label, value, delay = "0s", speed = "8s" } = Astro.props;
+const clamp = (n: number) => Math.max(6, Math.min(96, n));
+const min = clamp(value - 16);
+const max = clamp(value + 9);
+const vars = `--meter-min:${min}%;--meter-max:${max}%;--phase:${delay};--speed:${speed};`;
+---
+<div class="flex items-center justify-between gap-4 border-b border-line pb-3 last:border-b-0 last:pb-0">
+  <span>{label}</span>
+  <span class="relative h-[6px] w-24 shrink-0 overflow-hidden bg-line/60">
+    <span class="m-meter-fill absolute inset-y-0 left-0 bg-accent" style={`width:${value}%;${vars}`}></span>
+  </span>
+</div>

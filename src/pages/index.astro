@@ -3,11 +3,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import MonoLabel from "../components/MonoLabel.astro";
 import Button from "../components/Button.astro";
 import GridCell from "../components/GridCell.astro";
-import StatNumber from "../components/StatNumber.astro";
-import DottedGrid from "../components/DottedGrid.astro";
+import StatBand from "../components/StatBand.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import ProductGrid from "../components/ProductGrid.astro";
 import CTABand from "../components/CTABand.astro";
+import Meter from "../components/Meter.astro";
+import Connector from "../components/Connector.astro";
+
+const stats = [
+  { value: "4", caption: "Products shipped" },
+  { value: "2024", caption: "Founded" },
+  { value: "100%", caption: "Security-first" },
+  { value: "∞", caption: "Social impact" },
+];
 
 const capabilities = [
   {
@@ -64,10 +72,10 @@ const commitments = [
         <GridCell class="h-full p-6">
           <MonoLabel>Processing // impact</MonoLabel>
           <div class="mt-6 space-y-4 font-mono text-xs text-ink-soft">
-            <div class="flex justify-between border-b border-line pb-3"><span>Education</span><span class="text-accent">▓▓▓▓▓▓▓░░</span></div>
-            <div class="flex justify-between border-b border-line pb-3"><span>Artificial intelligence</span><span class="text-accent">▓▓▓▓▓▓░░░</span></div>
-            <div class="flex justify-between border-b border-line pb-3"><span>Community solutions</span><span class="text-accent">▓▓▓▓▓▓▓▓░</span></div>
-            <div class="flex justify-between"><span>Secure applications</span><span class="text-accent">▓▓▓▓▓▓▓░░</span></div>
+            <Meter label="Education" value={78} delay="0s" />
+            <Meter label="Artificial intelligence" value={62} delay="-2s" />
+            <Meter label="Community solutions" value={85} delay="-4s" />
+            <Meter label="Secure applications" value={71} delay="-6s" />
           </div>
         </GridCell>
       </div>
@@ -85,23 +93,16 @@ const commitments = [
   </section>
 
   <!-- Stat band -->
-  <DottedGrid class="border-y border-line">
-    <section class="mx-auto max-w-7xl px-5 py-16 md:px-8">
-      <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
-        <StatNumber value="4" caption="Products shipped" />
-        <StatNumber value="2024" caption="Founded" />
-        <StatNumber value="100%" caption="Security-first" />
-        <StatNumber value="∞" caption="Social impact" />
-      </div>
-    </section>
-  </DottedGrid>
+  <StatBand stats={stats} />
 
   <!-- Capabilities -->
   <section class="mx-auto max-w-7xl px-5 py-20 md:px-8">
     <SectionHeader eyebrow="What we do" title="Software that serves." />
-    <div class="mt-12 grid gap-4 md:grid-cols-2">
-      {capabilities.map((c) => (
-        <GridCell class="p-8">
+    <div class="relative mt-12">
+      <Connector axis="y" class="absolute inset-y-0 left-1/2 z-0 hidden w-[6px] -translate-x-1/2 md:block" speed="11s" delay="-3s" />
+      <div class="relative z-10 grid gap-4 md:grid-cols-2">
+      {capabilities.map((c, i) => (
+        <GridCell travel index={i} class="p-8">
           <div class="flex items-baseline justify-between">
             <MonoLabel>Capability</MonoLabel>
             <span class="font-mono text-xs text-ink-soft">{c.n}</span>
@@ -110,6 +111,7 @@ const commitments = [
           <p class="mt-3 text-ink-soft">{c.body}</p>
         </GridCell>
       ))}
+      </div>
     </div>
   </section>
 

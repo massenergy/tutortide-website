@@ -16,7 +16,7 @@ export type CapabilityGroup = {
 export type FeatureRow = { title: string; body: string };
 export type Faq = { q: string; a: string };
 export type Stat = { value: string; caption: string };
-export type ReadoutLine = { label: string; meter: string };
+export type ReadoutLine = { label: string; value: number };
 
 export type ProductContent = {
   slug: string;
@@ -54,10 +54,10 @@ export const jinjing: ProductContent = {
   ],
   readoutLabel: "Session // mastery engine",
   readout: [
-    { label: "Diagnose gaps", meter: "▓▓▓▓▓▓▓▓░" },
-    { label: "Backtrack foundations", meter: "▓▓▓▓▓▓░░░" },
-    { label: "Socratic tutoring", meter: "▓▓▓▓▓▓▓░░" },
-    { label: "Fact grounding", meter: "▓▓▓▓▓▓▓▓▓" },
+    { label: "Diagnose gaps", value: 82 },
+    { label: "Backtrack foundations", value: 60 },
+    { label: "Socratic tutoring", value: 74 },
+    { label: "Fact grounding", value: 95 },
   ],
   stats: [
     { value: "99.9%", caption: "Fact grounding" },
@@ -116,10 +116,10 @@ export const nyokavi: ProductContent = {
   ],
   readoutLabel: "Processing // M-Pesa statement",
   readout: [
-    { label: "Revenue detected", meter: "▓▓▓▓▓▓▓▓▓" },
-    { label: "Leaks identified", meter: "▓▓▓▓▓▓░░░" },
-    { label: "Real profit margin", meter: "▓▓▓▓░░░░░" },
-    { label: "Bankability score", meter: "▓▓▓▓▓▓▓░░" },
+    { label: "Revenue detected", value: 92 },
+    { label: "Leaks identified", value: 60 },
+    { label: "Real profit margin", value: 42 },
+    { label: "Bankability score", value: 74 },
   ],
   stats: [
     { value: "KES 6.4K", caption: "Lost / month · kibanda" },
@@ -176,10 +176,10 @@ export const waterpro: ProductContent = {
   ],
   readoutLabel: "Processing // billing run",
   readout: [
-    { label: "Read meters", meter: "▓▓▓▓▓▓▓▓▓" },
-    { label: "Send SMS bills", meter: "▓▓▓▓▓▓▓░░" },
-    { label: "Reconcile M-Pesa", meter: "▓▓▓▓▓▓▓▓░" },
-    { label: "Report to committee", meter: "▓▓▓▓▓▓░░░" },
+    { label: "Read meters", value: 92 },
+    { label: "Send SMS bills", value: 74 },
+    { label: "Reconcile M-Pesa", value: 84 },
+    { label: "Report to committee", value: 62 },
   ],
   stats: [
     { value: "1", caption: "Afternoon for a month's books" }, // TODO: real metric
@@ -259,10 +259,10 @@ export const tundamoto: ProductContent = {
   ],
   readoutLabel: "Platform // five sides",
   readout: [
-    { label: "Land owners", meter: "▓▓▓▓▓▓▓░░" },
-    { label: "Financiers", meter: "▓▓▓▓▓▓░░░" },
-    { label: "Off-takers", meter: "▓▓▓▓▓▓▓░░" },
-    { label: "Transparency", meter: "▓▓▓▓▓▓▓▓▓" },
+    { label: "Land owners", value: 74 },
+    { label: "Financiers", value: 60 },
+    { label: "Off-takers", value: 74 },
+    { label: "Transparency", value: 95 },
   ],
   capabilityGroups: [
     {

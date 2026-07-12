@@ -1,20 +1,48 @@
 ---
 import CornerTicks from "./CornerTicks.astro";
 // Bordered modular grid cell with corner-tick brackets.
+// Optional `travel`: a dot rides the top edge L→R and the bottom edge R→L.
+// `index` phase-offsets each card and alternates direction/speed on neighbours,
+// so every card sits at a different stage of the journey.
 interface Props {
-  ticks?: boolean;          // show corner ticks
+  ticks?: boolean;
   tickColor?: string;
   class?: string;
-  as?: string;              // element tag (div, a, li…)
+  as?: string;
   href?: string;
+  travel?: boolean;
+  index?: number;
 }
-const { ticks = true, tickColor = "var(--color-accent)", class: className = "", as = "div", href } = Astro.props;
+const {
+  ticks = true,
+  tickColor = "var(--color-accent)",
+  class: className = "",
+  as = "div",
+  href,
+  travel = false,
+  index = 0,
+} = Astro.props;
 const Tag = href ? "a" : as;
+const even = index % 2 === 0;
+const speed = even ? "9s" : "11s";
+const phase = `-${(index % 4) * 2}s`;
+// Even cards: top L→R, bottom R→L. Odd cards: swapped, for visible alternation.
+const topClass = even ? "m-travel" : "m-travel-rev";
+const bottomClass = even ? "m-travel-rev" : "m-travel";
+const dotVars = `--travel: calc(100cqw - 7px); --speed:${speed}; --phase:${phase};`;
 ---
 <Tag
   href={href}
-  class:list={["relative block border border-line bg-surface", className]}
+  class:list={["relative block border border-line bg-surface", travel && "[container-type:inline-size]", className]}
 >
   {ticks && <CornerTicks color={tickColor} />}
+  {travel && (
+    <span class="pointer-events-none absolute inset-x-0 top-0 h-0" aria-hidden="true">
+      <span class={`absolute left-0 top-[-3px] h-[6px] w-[6px] rounded-full bg-accent ${topClass}`} style={dotVars}></span>
+    </span>
+    <span class="pointer-events-none absolute inset-x-0 bottom-0 h-0" aria-hidden="true">
+      <span class={`absolute left-0 bottom-[-3px] h-[6px] w-[6px] rounded-full bg-accent ${bottomClass}`} style={dotVars}></span>
+    </span>
+  )}
   <slot />
 </Tag>

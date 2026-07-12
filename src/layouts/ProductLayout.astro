@@ -2,11 +2,11 @@
 import BaseLayout from "./BaseLayout.astro";
 import MonoLabel from "../components/MonoLabel.astro";
 import GridCell from "../components/GridCell.astro";
-import StatNumber from "../components/StatNumber.astro";
-import DottedGrid from "../components/DottedGrid.astro";
+import StatBand from "../components/StatBand.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import Faq from "../components/Faq.astro";
 import CTABand from "../components/CTABand.astro";
+import Meter from "../components/Meter.astro";
 import type { ProductContent } from "../data/products-content";
 
 interface Props { product: ProductContent; }
@@ -55,10 +55,7 @@ const productLd = {
             <MonoLabel>{p.readoutLabel}</MonoLabel>
             <div class="mt-6 space-y-4 font-mono text-xs text-ink-soft">
               {p.readout.map((line, i) => (
-                <div class:list={["flex items-center justify-between", i < p.readout!.length - 1 && "border-b border-line pb-3"]}>
-                  <span>{line.label}</span>
-                  <span class="text-accent">{line.meter}</span>
-                </div>
+                <Meter label={line.label} value={line.value} delay={`-${i * 2}s`} />
               ))}
             </div>
           </GridCell>
@@ -68,15 +65,7 @@ const productLd = {
   </section>
 
   <!-- Stats -->
-  {p.stats && (
-    <DottedGrid class="border-b border-line">
-      <section class="mx-auto max-w-7xl px-5 py-16 md:px-8">
-        <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
-          {p.stats.map((s) => <StatNumber value={s.value} caption={s.caption} />)}
-        </div>
-      </section>
-    </DottedGrid>
-  )}
+  {p.stats && <StatBand stats={p.stats} class="border-b border-line" />}
 
   <!-- Capability groups -->
   {p.capabilityGroups.map((group, gi) => (
