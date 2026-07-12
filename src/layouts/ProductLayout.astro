@@ -11,8 +11,18 @@ import type { ProductContent } from "../data/products-content";
 
 interface Props { product: ProductContent; }
 const { product: p } = Astro.props;
+
+const productLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: p.name,
+  description: p.seoDescription,
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  publisher: { "@type": "Organization", name: "Tutortide Limited" },
+};
 ---
-<BaseLayout title={p.seoTitle} description={p.seoDescription}>
+<BaseLayout title={p.seoTitle} description={p.seoDescription} jsonLd={productLd}>
   <!-- Hero -->
   <section class="border-b border-line">
     <div class="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-12 md:px-8 md:py-24">

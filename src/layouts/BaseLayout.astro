@@ -14,15 +14,30 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  jsonLd?: Record<string, unknown>;
+  noindex?: boolean;
 }
 const {
   title,
   description = "Tutortide Limited — secure technology and social innovation. Education software, AI, and community solutions.",
   image = "/og-default.png",
+  jsonLd,
+  noindex = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, site.domain).href;
 const fullTitle = title === site.name ? title : `${title} · ${site.name}`;
+
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Tutortide Limited",
+  url: site.domain,
+  email: site.email,
+  description:
+    "Social enterprise building secure education software, AI, and community solutions for positive social impact.",
+  foundingDate: "2024",
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -32,6 +47,7 @@ const fullTitle = title === site.name ? title : `${title} · ${site.name}`;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -44,6 +60,9 @@ const fullTitle = title === site.name ? title : `${title} · ${site.name}`;
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(organizationLd)} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body class="bg-canvas text-ink">
     <a
