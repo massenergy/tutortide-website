@@ -56,7 +56,52 @@
     background-image: radial-gradient(var(--color-line) 1px, transparent 1px);
     background-size: 22px 22px;
   }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-  }
+}
+
+/* ---------------------------------------------------------------------------
+   Ambient motion — Conductor-style. Slow, subtle, GPU-friendly (transform/
+   opacity/width only). Everything is gated: motion runs ONLY when the user
+   has not asked to reduce it. The static state is the default (see the
+   component styles), so `reduce` needs no overrides — it simply never opts in.
+--------------------------------------------------------------------------- */
+@keyframes meter-breathe {
+  0%, 100% { width: var(--meter-min, 45%); }
+  50%      { width: var(--meter-max, 80%); }
+}
+@keyframes travel-x {
+  0%   { transform: translateX(0); opacity: 0; }
+  10%, 90% { opacity: 1; }
+  100% { transform: translateX(var(--travel, 100%)); opacity: 0; }
+}
+@keyframes travel-x-rev {
+  0%   { transform: translateX(var(--travel, 100%)); opacity: 0; }
+  10%, 90% { opacity: 1; }
+  100% { transform: translateX(0); opacity: 0; }
+}
+@keyframes travel-y {
+  0%   { transform: translateY(0); opacity: 0; }
+  10%, 90% { opacity: 1; }
+  100% { transform: translateY(var(--travel, 100%)); opacity: 0; }
+}
+@keyframes dash-drift {
+  to { background-position: var(--drift, 44px) 0; }
+}
+@keyframes dot-pulse {
+  0%, 100% { opacity: 0.35; transform: scale(0.85); }
+  50%      { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .m-meter-fill { animation: meter-breathe var(--speed, 8s) ease-in-out infinite var(--phase, 0s); }
+  .m-travel     { animation: travel-x var(--speed, 9s) ease-in-out infinite var(--phase, 0s); }
+  .m-travel-rev { animation: travel-x-rev var(--speed, 9s) ease-in-out infinite var(--phase, 0s); }
+  .m-travel-y   { animation: travel-y var(--speed, 9s) ease-in-out infinite var(--phase, 0s); }
+  .m-drift      { animation: dash-drift 10s linear infinite; }
+  .m-pulse      { animation: dot-pulse 4s ease-in-out infinite var(--phase, 0s); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  /* Traveling dots carry no static meaning — hide them entirely. */
+  .m-travel, .m-travel-rev, .m-travel-y { display: none; }
 }

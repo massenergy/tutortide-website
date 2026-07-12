@@ -1,0 +1,22 @@
+---
+import StatNumber from "./StatNumber.astro";
+import Connector from "./Connector.astro";
+import DottedGrid from "./DottedGrid.astro";
+import type { Stat } from "../data/products-content";
+interface Props {
+  stats: Stat[];
+  class?: string;   // border treatment for the outer band
+}
+const { stats, class: className = "border-y border-line" } = Astro.props;
+---
+<DottedGrid class={className}>
+  <section class="mx-auto max-w-7xl px-5 py-16 md:px-8">
+    <div class="relative">
+      <!-- thread through the metrics (desktop) -->
+      <Connector class="absolute inset-x-0 top-1/2 z-0 hidden h-[6px] md:block" speed="12s" delay="-4s" />
+      <div class="relative z-10 grid grid-cols-2 gap-8 md:grid-cols-4">
+        {stats.map((s) => <StatNumber value={s.value} caption={s.caption} />)}
+      </div>
+    </div>
+  </section>
+</DottedGrid>

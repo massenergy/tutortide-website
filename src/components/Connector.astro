@@ -1,0 +1,43 @@
+---
+// A dotted line with a dot traveling along it. Horizontal (axis="x", default)
+// threads a row of cards/metrics; vertical (axis="y") threads a column gap.
+// Desktop-only at call sites. Under prefers-reduced-motion the dot is hidden
+// and the dotted line stays put (static connector).
+interface Props {
+  class?: string;
+  axis?: "x" | "y";
+  delay?: string;
+  speed?: string;
+}
+const { class: className = "", axis = "x", delay = "0s", speed = "9s" } = Astro.props;
+const horizontal = axis === "x";
+const dotVars = horizontal
+  ? `--travel: calc(100cqw - 6px); --speed:${speed}; --phase:${delay};`
+  : `--travel: calc(100cqh - 6px); --speed:${speed}; --phase:${delay};`;
+const containerType = horizontal ? "[container-type:inline-size]" : "[container-type:size]";
+---
+<div class:list={["pointer-events-none", containerType, className]} aria-hidden="true">
+  {horizontal ? (
+    <>
+      <span
+        class="m-drift absolute inset-x-0 top-1/2 -mt-px block h-px"
+        style="background-image: linear-gradient(90deg, var(--color-line) 0 5px, transparent 5px 11px); background-size:11px 1px; --drift:44px;"
+      ></span>
+      <span
+        class="m-travel absolute left-0 top-1/2 -mt-[3px] block h-[6px] w-[6px] rounded-full bg-accent"
+        style={dotVars}
+      ></span>
+    </>
+  ) : (
+    <>
+      <span
+        class="absolute inset-y-0 left-1/2 -ml-px block w-px"
+        style="background-image: linear-gradient(180deg, var(--color-line) 0 5px, transparent 5px 11px); background-size:1px 11px;"
+      ></span>
+      <span
+        class="m-travel-y absolute top-0 left-1/2 -ml-[3px] block h-[6px] w-[6px] rounded-full bg-accent"
+        style={dotVars}
+      ></span>
+    </>
+  )}
+</div>
