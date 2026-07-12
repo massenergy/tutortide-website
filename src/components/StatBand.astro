@@ -13,7 +13,7 @@ const { stats, class: className = "border-y border-line" } = Astro.props;
   <section class="mx-auto max-w-7xl px-5 py-16 md:px-8">
     <div class="relative">
       <!-- thread through the metrics (desktop) -->
-      <Connector class="absolute inset-x-0 top-1/2 z-0 hidden h-[6px] md:block" speed="12s" delay="-4s" />
+      <Connector class="absolute inset-x-0 top-1/2 z-0 hidden h-[6px] md:block" speed="16s" delay="-4s" />
       <div class="relative z-10 grid grid-cols-2 gap-8 md:grid-cols-4">
         {stats.map((s) => <StatNumber value={s.value} caption={s.caption} />)}
       </div>

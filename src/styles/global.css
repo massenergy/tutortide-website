@@ -92,12 +92,12 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .m-meter-fill { animation: meter-breathe var(--speed, 8s) ease-in-out infinite var(--phase, 0s); }
-  .m-travel     { animation: travel-x var(--speed, 9s) ease-in-out infinite var(--phase, 0s); }
-  .m-travel-rev { animation: travel-x-rev var(--speed, 9s) ease-in-out infinite var(--phase, 0s); }
-  .m-travel-y   { animation: travel-y var(--speed, 9s) ease-in-out infinite var(--phase, 0s); }
-  .m-drift      { animation: dash-drift 10s linear infinite; }
-  .m-pulse      { animation: dot-pulse 4s ease-in-out infinite var(--phase, 0s); }
+  .m-meter-fill { animation: meter-breathe var(--speed, 11s) ease-in-out infinite var(--phase, 0s); }
+  .m-travel     { animation: travel-x var(--speed, 12s) ease-in-out infinite var(--phase, 0s); }
+  .m-travel-rev { animation: travel-x-rev var(--speed, 12s) ease-in-out infinite var(--phase, 0s); }
+  .m-travel-y   { animation: travel-y var(--speed, 12s) ease-in-out infinite var(--phase, 0s); }
+  .m-drift      { animation: dash-drift 14s linear infinite; }
+  .m-pulse      { animation: dot-pulse 5s ease-in-out infinite var(--phase, 0s); }
 }
 
 @media (prefers-reduced-motion: reduce) {
