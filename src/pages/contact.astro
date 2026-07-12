@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MonoLabel from "../components/MonoLabel.astro";
+import GridCell from "../components/GridCell.astro";
+import { site } from "../data/site";
+---
+<BaseLayout
+  title="Contact"
+  description="Get in touch with Tutortide Limited — secure technology and social innovation. Email massenergy2050@gmail.com."
+>
+  <section class="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+    <div class="grid gap-12 md:grid-cols-12">
+      <div class="md:col-span-6">
+        <MonoLabel class="mb-6 block">Contact</MonoLabel>
+        <h1 class="text-4xl font-bold leading-[1.05] md:text-6xl">
+          Thinking of something interesting?
+        </h1>
+        <p class="mt-8 max-w-md text-lg text-ink-soft">
+          Tell us what you want to build. We reply to every message.
+        </p>
+      </div>
+
+      <div class="md:col-span-6">
+        <GridCell class="p-8">
+          <MonoLabel>Reach us</MonoLabel>
+          <div class="mt-6 space-y-6">
+            <div>
+              <p class="font-mono text-xs uppercase tracking-widest text-ink-soft">Email</p>
+              <a href={`mailto:${site.email}`} class="mt-1 block text-lg font-medium transition-colors hover:text-accent">
+                {site.email}
+              </a>
+            </div>
+            <div>
+              <p class="font-mono text-xs uppercase tracking-widest text-ink-soft">Website</p>
+              <a href={site.domain} class="mt-1 block text-lg font-medium transition-colors hover:text-accent">
+                tutortide.online
+              </a>
+            </div>
+            <div>
+              <p class="font-mono text-xs uppercase tracking-widest text-ink-soft">Location</p>
+              <p class="mt-1 text-lg font-medium">Worldwide</p>
+            </div>
+          </div>
+          <div class="mt-8">
+            <a
+              href={`mailto:${site.email}?subject=Project%20enquiry`}
+              class="inline-flex items-center gap-2 border border-accent bg-accent px-6 py-3 font-mono text-xs uppercase tracking-widest text-white transition-colors hover:bg-accent-hover"
+            >
+              Email us
+            </a>
+          </div>
+        </GridCell>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
