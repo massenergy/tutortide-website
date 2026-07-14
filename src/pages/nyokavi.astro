@@ -1,5 +1,258 @@
 ---
-import ProductLayout from "../layouts/ProductLayout.astro";
-import { nyokavi } from "../data/products-content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MonoLabel from "../components/MonoLabel.astro";
+import GridCell from "../components/GridCell.astro";
+import StatBand from "../components/StatBand.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import Meter from "../components/Meter.astro";
+import CTABand from "../components/CTABand.astro";
+
+// Nyokavi Core Systems — funder-positioning page. Speaks to BOTH the
+// Netherlands Embassy call (business-climate / systemic / market-entry) and the
+// DIV Fund (cost-effectiveness, durable scale, rigorous evidence).
+// Every partnership is PROPOSED (none signed). Metrics are the company's own
+// verified M-Pesa figures (1.4 Nyokavi_Sales_Collateral.pdf).
+
+const scorecard = [
+  { label: "Revenue stability", value: 82 },
+  { label: "Profitability", value: 68 },
+  { label: "Cash discipline", value: 74 },
+  { label: "Debt exposure", value: 46 },
+  { label: "Record quality", value: 90 },
+];
+
+const stats = [
+  { value: "33 min", caption: "Edge-to-insight window" },
+  { value: "<$850", caption: "Per 200K daily txns / month" },
+  { value: "200K+", caption: "Merchants targeted, phase one" },
+  { value: "38M", caption: "Kenyan mobile-money users" },
+];
+
+const pipeline = [
+  { n: "01", t: "Edge event", d: "M-Pesa SMS / WhatsApp captured on-device with crypto signing." },
+  { n: "02", t: "Async buffer", d: "Cloud Pub/Sub high-throughput message buffer." },
+  { n: "03", t: "Regex refinery", d: "Dataflow compute threads parse and reclassify transactions." },
+  { n: "04", t: "Dedup + state", d: "Sub-millisecond key dedup and state tracking." },
+  { n: "05", t: "Structured JSON", d: "Bankability score + Invisible Tax Index output." },
+];
+
+const products = [
+  { t: "Invisible Tax Index™", d: "Quantifies the KES/month lost to unstructured owner draws, M-Pesa fees, and Fuliza dependency — hidden leakage made visible and bankable." },
+  { t: "Bankability Scorecard", d: "A 5-pillar credit assessment — revenue stability, profitability, cash discipline, debt exposure, record quality — derived entirely from transaction telemetry. No paper trail." },
+  { t: "Sector Intelligence Layer", d: "Classifies micro-food retail, grocery, industrial extraction, and personal accounts, isolating sector-specific risk signals per vertical." },
+];
+
+const cases = [
+  { id: "BIZ001", tag: "Break-even", name: "Micro-Food Kibanda", meta: "6 months · cooked food retail", rows: [["KES 123,825", "Total revenue"], ["71.4%", "Gross profit margin"], ["27.5%", "Fuliza dependency"]] },
+  { id: "BIZ002", tag: "Healthy", name: "Kiosk Green Grocer", meta: "7 months · high-volume grocery", rows: [["KES 495,180", "Total revenue"], ["73.8%", "Gross profit margin"], ["475%", "Revenue growth"]] },
+  { id: "BIZ003", tag: "Break-even", name: "Industrial Quarry", meta: "9 months · construction supply", rows: [["KES 28.8M", "Total revenue"], ["+13.8%", "True GP (after reclass)"], ["KES 4.07M", "Owner income isolated"]] },
+  { id: "BIZ004", tag: "Break-even", name: "Food + Grocery Till", meta: "5 months · Lipa na M-Pesa till", rows: [["KES 476,874", "Total revenue"], ["27%", "Net profit margin"], ["4,999", "Customer transactions"]] },
+];
+
+const tiers = [
+  { tier: "Tier 1", t: "Sector aggregator pilot — KNJF", d: "Deploy the engine across an initial pilot of Jua Kali artisans and micro-merchants: an intermediation model that aggregates informal SMEs and reduces their barriers to formal finance (Focus Area B)." },
+  { tier: "Tier 2", t: "Standards validation — UNIDO", d: "Use UNIDO industrial-development frameworks to validate the refinery's sector-intelligence metrics against international formalization benchmarks." },
+  { tier: "Tier 3", t: "State bridge — MSEA", d: "Expose structured outputs to a government agency (MSEA / State Dept for MSMEs) via API — an administrative-compliance optimization that lets the state verify informal-sector output without paper audits (Focus Area A)." },
+];
+
+const verticals = [
+  { t: "Banking & MFIs", d: "Full P&L + bankability scorecard from a verified M-Pesa ledger — shifting MSME lending from guesswork to data-driven underwriting." },
+  { t: "Digital lending & fintech", d: "Real-time risk alerts; adjust credit limits from live Fuliza dependency, OD exposure, and margin trajectory." },
+  { t: "Insurance & micro-insuretech", d: "Parametric business-interruption cover, auto-adjusted from verified monthly trade volume and sector cost profiles." },
+  { t: "Wealth management", d: "Advisory loops that surface silent-loop leakage and build automated micro-saving allocations." },
+];
 ---
-<ProductLayout product={nyokavi} />
+<BaseLayout
+  title="Nyokavi — Mapping the Invisible GDP"
+  description="Nyokavi Core Systems turns raw M-Pesa telemetry into regulatory-grade credit evidence at near-zero cost — an alternative credit intelligence platform for Kenya's informal economy."
+>
+  <!-- Hero -->
+  <section class="border-b border-line">
+    <div class="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-12 md:px-8 md:py-24">
+      <div class="md:col-span-7">
+        <MonoLabel class="mb-6 block">Nyokavi Core Systems · Alternative credit intelligence</MonoLabel>
+        <h1 class="text-4xl font-bold leading-[1.05] md:text-6xl">Mapping the Invisible GDP.</h1>
+        <p class="mt-8 max-w-xl text-lg text-ink-soft">
+          Across Africa's informal economy, billions in daily M-Pesa commerce sit co-mingled in
+          personal accounts — invisible to banks, insurers, and the state. Nyokavi's deterministic
+          engine de-couples personal draws from true operating margins and produces a tamper-proof
+          Bankability Scorecard, at near-zero cost.
+        </p>
+        <div class="mt-10">
+          <a href="#partner" class="inline-flex items-center gap-2 border border-accent bg-accent px-6 py-3 font-mono text-xs uppercase tracking-widest text-white transition-colors hover:bg-accent-hover">
+            Partner with us
+          </a>
+        </div>
+      </div>
+      <div class="md:col-span-5">
+        <GridCell class="h-full p-6">
+          <MonoLabel>Bankability scorecard</MonoLabel>
+          <div class="mt-6 space-y-4 font-mono text-xs text-ink-soft">
+            {scorecard.map((s, i) => <Meter label={s.label} value={s.value} delay={`-${i * 2}s`} />)}
+          </div>
+          <p class="mt-6 font-mono text-[0.7rem] text-ink-soft">Derived entirely from transaction telemetry — no paper trail.</p>
+        </GridCell>
+      </div>
+    </div>
+  </section>
+
+  <StatBand stats={stats} class="border-b border-line" />
+
+  <!-- Problem -->
+  <section class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+    <SectionHeader
+      eyebrow="The problem"
+      title="A market failure hiding in plain sight."
+      support="Informal MSMEs are Kenya's largest employer, yet remain invisible to the formal financial system and the state — a structural barrier to inclusive private-sector growth."
+    />
+    <div class="mt-12 grid gap-4 md:grid-cols-3">
+      <GridCell class="p-6"><MonoLabel>Invisible</MonoLabel><h3 class="mt-4 text-xl font-bold">Co-mingled money</h3><p class="mt-3 text-sm text-ink-soft">Personal and business flows share one M-Pesa line, so true operating margins can't be seen.</p></GridCell>
+      <GridCell class="p-6"><MonoLabel>Costly</MonoLabel><h3 class="mt-4 text-xl font-bold">The invisible tax</h3><p class="mt-3 text-sm text-ink-soft">Fees, unstructured draws, and Fuliza dependency quietly erode margins owners never measure.</p></GridCell>
+      <GridCell class="p-6"><MonoLabel>Excluded</MonoLabel><h3 class="mt-4 text-xl font-bold">No bankable record</h3><p class="mt-3 text-sm text-ink-soft">Without a verifiable ledger, lenders guess — and most merchants are simply denied.</p></GridCell>
+    </div>
+  </section>
+
+  <!-- How the engine works -->
+  <section class="border-y border-line bg-surface">
+    <div class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+      <SectionHeader eyebrow="How the engine works" title="Edge to insight in 33 minutes." support="A deterministic, format-based pipeline — no behaviour change asked of the merchant." />
+      <div class="mt-12 grid gap-4 md:grid-cols-5">
+        {pipeline.map((p) => (
+          <GridCell class="p-5">
+            <span class="font-mono text-xs text-ink-soft">{p.n}</span>
+            <h3 class="mt-3 font-display text-lg font-bold">{p.t}</h3>
+            <p class="mt-2 text-sm text-ink-soft">{p.d}</p>
+          </GridCell>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Three products -->
+  <section class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+    <SectionHeader eyebrow="What it produces" title="Rigorous, structured evidence." support="A strict data schema — observed facts, derived metrics, predictions — that speaks the language of institutional risk review." />
+    <div class="mt-12 grid gap-4 md:grid-cols-3">
+      {products.map((p, i) => (
+        <GridCell class="p-8">
+          <span class="font-mono text-xs text-ink-soft">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="mt-4 text-2xl font-bold">{p.t}</h3>
+          <p class="mt-3 text-ink-soft">{p.d}</p>
+        </GridCell>
+      ))}
+    </div>
+  </section>
+
+  <!-- Verified case studies -->
+  <section class="border-y border-line bg-surface">
+    <div class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+      <SectionHeader eyebrow="Verified pilot data" title="Four MSME case studies." support="Company-verified figures from real, anonymised M-Pesa transaction data." />
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {cases.map((c) => (
+          <GridCell class="p-6">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs text-ink-soft">{c.id}</span>
+              <span class="font-mono text-[0.65rem] uppercase tracking-widest text-accent">{c.tag}</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold">{c.name}</h3>
+            <p class="mt-1 text-xs text-ink-soft">{c.meta}</p>
+            <dl class="mt-5 space-y-3">
+              {c.rows.map(([v, k]) => (
+                <div class="border-t border-line pt-2">
+                  <dt class="font-display text-lg font-bold">{v}</dt>
+                  <dd class="font-mono text-[0.65rem] uppercase tracking-wide text-ink-soft">{k}</dd>
+                </div>
+              ))}
+            </dl>
+          </GridCell>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Cost-effectiveness & scale (DIV) -->
+  <section class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+    <SectionHeader eyebrow="Cost-effectiveness & durable scale" title="Impact per dollar, engineered in." support="Because the engine is a purely software-driven Android edge script, the marginal cost of scoring one more merchant falls to almost nothing." />
+    <div class="mt-12 grid gap-4 md:grid-cols-3">
+      <GridCell class="p-6"><h3 class="text-xl font-bold">Zero-CAC distribution</h3><p class="mt-3 text-sm text-ink-soft">No hardware, no field audits, no behaviour change — the cost to reach and score a new merchant approaches zero.</p></GridCell>
+      <GridCell class="p-6"><h3 class="text-xl font-bold">Runs on low-tier phones</h3><p class="mt-3 text-sm text-ink-soft">Local edge-parsing minimises data and battery cost, with no continuous cloud dependency.</p></GridCell>
+      <GridCell class="p-6"><h3 class="text-xl font-bold">A durable path to scale</h3><p class="mt-3 text-sm text-ink-soft">Format-based rules map directly to standard mobile-money syntax — a friction-free path across sub-Saharan Africa's 38M+ Kenyan users and beyond.</p></GridCell>
+    </div>
+  </section>
+
+  <!-- Systemic 3-tier roadmap (proposed) -->
+  <section class="border-y border-line bg-surface">
+    <div class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+      <SectionHeader eyebrow="Systemic path · proposed roadmap" title="From informal pilot to state-grade infrastructure." support="A structured, intentional plan for systemic change and business-climate reform — partnerships proposed, not yet signed." />
+      <div class="mt-12 grid gap-4 md:grid-cols-3">
+        {tiers.map((t) => (
+          <GridCell class="p-6">
+            <div class="flex items-center justify-between">
+              <MonoLabel>{t.tier}</MonoLabel>
+              <span class="border border-line px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-widest text-ink-soft">Proposed</span>
+            </div>
+            <h3 class="mt-4 text-xl font-bold">{t.t}</h3>
+            <p class="mt-3 text-sm text-ink-soft">{t.d}</p>
+          </GridCell>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it serves -->
+  <section class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+    <SectionHeader eyebrow="Who it serves" title="One ledger, many institutions." />
+    <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {verticals.map((v) => (
+        <div class="border-l border-line pl-5">
+          <h3 class="font-display text-lg font-bold">{v.t}</h3>
+          <p class="mt-2 text-sm text-ink-soft">{v.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Inclusion / additionality / sustainability -->
+  <section class="border-t border-line bg-surface">
+    <div class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+      <div class="grid gap-4 md:grid-cols-3">
+        <GridCell class="p-6"><MonoLabel>Inclusion</MonoLabel><h3 class="mt-4 text-xl font-bold">Built for the underserved</h3><p class="mt-3 text-sm text-ink-soft">Women, youth, and marginalized informal traders — long shut out of credit — gain a verifiable financial identity.</p></GridCell>
+        <GridCell class="p-6"><MonoLabel>Additionality</MonoLabel><h3 class="mt-4 text-xl font-bold">Addresses a real market failure</h3><p class="mt-3 text-sm text-ink-soft">No commercial actor bears the cost of making the informal economy legible; grant support unlocks a public good that would not otherwise exist.</p></GridCell>
+        <GridCell class="p-6"><MonoLabel>Sustainability</MonoLabel><h3 class="mt-4 text-xl font-bold">Continues past the grant</h3><p class="mt-3 text-sm text-ink-soft">A research-mode model keeps the first report free, with a small monthly token to continue — a light, self-sustaining path once the platform is validated.</p></GridCell>
+      </div>
+    </div>
+  </section>
+
+  <!-- Evidence / rigor -->
+  <section class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+    <div class="grid gap-8 md:grid-cols-12">
+      <div class="md:col-span-7">
+        <MonoLabel class="mb-4 block">Evidence & rigor</MonoLabel>
+        <h2 class="text-3xl font-bold md:text-4xl">Built to survive institutional review.</h2>
+        <p class="mt-6 max-w-xl text-ink-soft">
+          The schema segregates observed facts, derived metrics, and predictions so every score is
+          traceable to ground truth — designed to align with institutional model-risk standards
+          (SR 11-7). Independent statistical validation is planned with a US-based risk-analytics
+          partner.
+        </p>
+      </div>
+      <div class="md:col-span-5">
+        <GridCell class="p-6">
+          <div class="flex items-center justify-between">
+            <MonoLabel>Validation partner</MonoLabel>
+            <span class="border border-line px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-widest text-ink-soft">Proposed</span>
+          </div>
+          <h3 class="mt-4 text-xl font-bold">OGMA Risk &amp; Analytics (USA)</h3>
+          <p class="mt-3 text-sm text-ink-soft">Proposed statistical model-validation partner for alternative-data credit scoring under SR 11-7 standards. In discussion; not yet contracted.</p>
+        </GridCell>
+      </div>
+    </div>
+  </section>
+
+  <span id="partner"></span>
+  <CTABand
+    eyebrow="Nyokavi Core Systems"
+    title="Make the invisible economy bankable."
+    ctaLabel="Get in touch"
+    ctaHref="/contact"
+  />
+</BaseLayout>
