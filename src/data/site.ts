@@ -16,9 +16,9 @@ export type ProductLink = {
 
 export const products: ProductLink[] = [
   { name: "Jinjing", slug: "/jinjing", blurb: "AI student companion" },
-  { name: "Nyokavi", slug: "/nyokavi", blurb: "Business clarity from M-Pesa" },
+  { name: "Nyokavi", slug: "/nyokavi", blurb: "Alternative credit intelligence" },
   { name: "Waterpro", slug: "/waterpro", blurb: "Billing for water projects" },
-  { name: "Tundamoto", slug: "/tundamoto", blurb: "A five-sided cash-crop platform" },
+  { name: "Tundamoto", slug: "/tundamoto", blurb: "Farm-to-Europe traceability" },
 ];
 
 export const companyNav = [

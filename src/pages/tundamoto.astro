@@ -1,5 +1,159 @@
 ---
-import ProductLayout from "../layouts/ProductLayout.astro";
-import { tundamoto } from "../data/products-content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MonoLabel from "../components/MonoLabel.astro";
+import GridCell from "../components/GridCell.astro";
+import StatBand from "../components/StatBand.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import Meter from "../components/Meter.astro";
+import CTABand from "../components/CTABand.astro";
+
+// Tundamoto — funder-positioning page for the Netherlands Embassy call
+// (private-sector development & business-climate enhancement in Kenya).
+// Answers Focus Area A (regulatory/admin simplification via gov integration)
+// and Focus Area B (SME market entry & expansion). Partnerships PROPOSED.
+
+const clearance = [
+  { label: "Farm capture", value: 88 },
+  { label: "Quality grade", value: 72 },
+  { label: "Phytosanitary", value: 64 },
+  { label: "Export clearance", value: 80 },
+];
+
+const stats = [
+  { value: "$700M–1B", caption: "Annual Kenya → NL exports" },
+  { value: "#1", caption: "Kenya's EU market: Netherlands" },
+  { value: "5", caption: "Sides on the platform" },
+  { value: "3 yr", caption: "Program horizon" },
+];
+
+const platform = [
+  { t: "Land owners", d: "Yield in kilograms, expected income and bonus, and comparison data for the nearest farms — full transparency at the source." },
+  { t: "Financiers", d: "Assets financed, outputs generated, expected returns, and comparison data captured automatically." },
+  { t: "Produce off-takers", d: "Quantities committed, quality indicators, set price in US$, servicing farms, and point of delivery." },
+  { t: "EPC & operators", d: "Engineering, procurement, and construction data captured end-to-end across the delivery chain." },
+];
+
+const govPartners = [
+  { t: "KEPHIS", d: "A data bridge into KEPHIS's phytosanitary and export-certification systems, pushing real-time traceability data to inspectors and cutting turnaround times for export clearance." },
+  { t: "KenInvest / KenTrade", d: "An expansion of the single-window project: the platform automates trade documentation, lowering entry barriers for small agri-exporting SMEs." },
+  { t: "Horticultural Crops Directorate", d: "Integrating farm-to-plate tracking with HCD's export-license compliance workflow — removing manual verification delays for organized smallholder groups." },
+];
+
+const marketEntry = [
+  { t: "Aggregate smallholders", d: "An intermediation model that pools organized smallholder groups so they can meet the volume and quality thresholds of export buyers." },
+  { t: "Link SMEs to buyers", d: "Direct, verifiable linkages between farms and off-takers reduce the cost and risk of entering higher-value export markets." },
+  { t: "Standardize quality", d: "Digital quality indicators and traceability provide the assurance mechanisms higher-value European markets require." },
+];
 ---
-<ProductLayout product={tundamoto} />
+<BaseLayout
+  title="Tundamoto — Traceability from farm to Europe"
+  description="Tundamoto is a five-sided digital traceability platform that cuts export-clearance friction for Kenyan smallholders and links agri-SMEs to higher-value markets."
+>
+  <!-- Hero -->
+  <section class="border-b border-line">
+    <div class="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-12 md:px-8 md:py-24">
+      <div class="md:col-span-7">
+        <MonoLabel class="mb-6 block">Tundamoto · Agri-export traceability platform</MonoLabel>
+        <h1 class="text-4xl font-bold leading-[1.05] md:text-6xl">Traceability from farm to Europe.</h1>
+        <p class="mt-8 max-w-xl text-lg text-ink-soft">
+          A platform, a cash crop, and a cure for poverty. Tundamoto captures data at the point of
+          source and gives every party open transparency — cutting the phytosanitary and export
+          friction that keeps Kenyan smallholders out of higher-value markets.
+        </p>
+        <div class="mt-10">
+          <a href="#partner" class="inline-flex items-center gap-2 border border-accent bg-accent px-6 py-3 font-mono text-xs uppercase tracking-widest text-white transition-colors hover:bg-accent-hover">
+            Partner with us
+          </a>
+        </div>
+      </div>
+      <div class="md:col-span-5">
+        <GridCell class="h-full p-6">
+          <MonoLabel>Export clearance</MonoLabel>
+          <div class="mt-6 space-y-4 font-mono text-xs text-ink-soft">
+            {clearance.map((s, i) => <Meter label={s.label} value={s.value} delay={`-${i * 2}s`} />)}
+          </div>
+          <p class="mt-6 font-mono text-[0.7rem] text-ink-soft">Automated, end-to-end — data captured at the point of source.</p>
+        </GridCell>
+      </div>
+    </div>
+  </section>
+
+  <StatBand stats={stats} class="border-b border-line" />
+
+  <!-- Problem -->
+  <section class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+    <SectionHeader
+      eyebrow="The problem"
+      title="Kenya's smallholders are locked out of their best markets."
+      support="Horticulture drives Kenya's exports to the Netherlands, yet fragmented value chains and heavy compliance friction keep most smallholders from reaching them."
+    />
+    <div class="mt-12 grid gap-4 md:grid-cols-3">
+      <GridCell class="p-6"><MonoLabel>Fragmented</MonoLabel><h3 class="mt-4 text-xl font-bold">Weak value chains</h3><p class="mt-3 text-sm text-ink-soft">Smallholders lack the linkages and volume to reach large buyers and export markets.</p></GridCell>
+      <GridCell class="p-6"><MonoLabel>Regulated</MonoLabel><h3 class="mt-4 text-xl font-bold">Compliance friction</h3><p class="mt-3 text-sm text-ink-soft">Phytosanitary standards and export paperwork are slow, manual, and costly — a real business-climate barrier.</p></GridCell>
+      <GridCell class="p-6"><MonoLabel>Opaque</MonoLabel><h3 class="mt-4 text-xl font-bold">No shared truth</h3><p class="mt-3 text-sm text-ink-soft">Without traceable, standardized data, buyers and regulators can't trust informal supply.</p></GridCell>
+    </div>
+  </section>
+
+  <!-- The platform (five sides) -->
+  <section class="border-y border-line bg-surface">
+    <div class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+      <SectionHeader eyebrow="The platform" title="A five-sided platform, one shared truth." support="Key metrics are visible to all parties and data is captured automatically at the point of source." />
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {platform.map((p, i) => (
+          <GridCell class="p-6">
+            <span class="font-mono text-xs text-ink-soft">{String(i + 1).padStart(2, "0")}</span>
+            <h3 class="mt-4 text-xl font-bold">{p.t}</h3>
+            <p class="mt-3 text-sm text-ink-soft">{p.d}</p>
+          </GridCell>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Focus A: government integration (proposed) -->
+  <section class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+    <SectionHeader eyebrow="Focus Area A · reducing regulatory friction" title="Built to plug into the state — proposed integrations." support="Practical software that simplifies compliance, in collaboration with the agencies that govern agri-export. Partnerships proposed, not yet signed." />
+    <div class="mt-12 grid gap-4 md:grid-cols-3">
+      {govPartners.map((p) => (
+        <GridCell class="p-6">
+          <div class="flex items-center justify-between">
+            <MonoLabel>Government partner</MonoLabel>
+            <span class="border border-line px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-widest text-ink-soft">Proposed</span>
+          </div>
+          <h3 class="mt-4 text-xl font-bold">{p.t}</h3>
+          <p class="mt-3 text-sm text-ink-soft">{p.d}</p>
+        </GridCell>
+      ))}
+    </div>
+  </section>
+
+  <!-- Focus B: market entry -->
+  <section class="border-y border-line bg-surface">
+    <div class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+      <SectionHeader eyebrow="Focus Area B · market entry & expansion" title="From informal farm to export buyer." support="An intermediation model that aggregates SMEs and reduces the barriers to market participation." />
+      <div class="mt-12 grid gap-4 md:grid-cols-3">
+        {marketEntry.map((m) => (
+          <GridCell class="p-6"><h3 class="text-xl font-bold">{m.t}</h3><p class="mt-3 text-sm text-ink-soft">{m.d}</p></GridCell>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Systemic / sustainability / inclusion -->
+  <section class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+    <SectionHeader eyebrow="Why it lasts" title="Systemic, sustainable, inclusive." />
+    <div class="mt-12 grid gap-4 md:grid-cols-3">
+      <GridCell class="p-6"><MonoLabel>Systemic</MonoLabel><h3 class="mt-4 text-xl font-bold">A new cash-crop rail</h3><p class="mt-3 text-sm text-ink-soft">The platform standardizes how an entire value chain is financed, tracked, and sold — changing the system, not just one farm.</p></GridCell>
+      <GridCell class="p-6"><MonoLabel>Inclusion</MonoLabel><h3 class="mt-4 text-xl font-bold">Smallholders, women & youth</h3><p class="mt-3 text-sm text-ink-soft">Organized smallholder groups — many women and youth led — gain verifiable access to export income.</p></GridCell>
+      <GridCell class="p-6"><MonoLabel>Sustainability</MonoLabel><h3 class="mt-4 text-xl font-bold">Revenue that outlasts the grant</h3><p class="mt-3 text-sm text-ink-soft">Off-taker demand and financier participation fund the platform's continued operation beyond the grant period.</p></GridCell>
+    </div>
+  </section>
+
+  <span id="partner"></span>
+  <CTABand
+    eyebrow="Tundamoto"
+    title="A cure for poverty, built on transparency."
+    ctaLabel="Get in touch"
+    ctaHref="/contact"
+  />
+</BaseLayout>

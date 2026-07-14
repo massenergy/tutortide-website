@@ -1,5 +1,68 @@
 ---
-import ProductLayout from "../layouts/ProductLayout.astro";
-import { jinjing } from "../data/products-content";
+// Standalone clone of the live Jinjing product site (jinjing.tutortide.online),
+// reproduced faithfully in its own styling — NOT the hub design system. Only a
+// discreet "← tutortide" back-link is added. The rendered markup is captured in
+// _jinjing-clone.html (own-site assets rewritten to absolute live URLs).
+import cloneHtml from "./_jinjing-clone.html?raw";
 ---
-<ProductLayout product={jinjing} />
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Student Companion — Empowering Every Learner</title>
+    <meta
+      name="description"
+      content="Jinjing — the Mastery Engine for every student. Personalized Socratic tutoring, teacher automation, and national analytics on Google Vertex AI."
+    />
+    <link rel="icon" href="https://jinjing.tutortide.online/Logo150.png" />
+    <script is:inline src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style is:inline>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        scroll-behavior: smooth;
+      }
+      .glass {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .tt-back {
+        position: fixed;
+        bottom: 16px;
+        left: 16px;
+        z-index: 60;
+        font-size: 12px;
+        font-family: ui-monospace, "JetBrains Mono", monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #475569;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(6px);
+        padding: 6px 12px;
+        border: 1px solid #e2e8f0;
+        border-radius: 999px;
+        text-decoration: none;
+      }
+      .tt-back:hover {
+        color: #4f46e5;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-slate-900">
+    <a href="/" class="tt-back">← tutortide</a>
+    <Fragment set:html={cloneHtml} />
+  </body>
+</html>
