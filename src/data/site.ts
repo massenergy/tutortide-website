@@ -4,7 +4,7 @@
 export const site = {
   name: "Tutortide",
   domain: "https://tutortide.online",
-  email: "massenergy2050@gmail.com",
+  email: "info@tutortide.online",
   tagline: "Secure technology & social innovation",
 };
 
