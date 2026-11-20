@@ -3,6 +3,8 @@
 export const site = {
   name: "Tutortide",
   legalName: "Tutortide Limited",
+  registration: "PVT-LRUMRDVR",   // Certificate of Incorporation, Registrar of Companies, Kenya
+  incorporated: "29 October 2024",
   domain: "https://tutortide.online",
   email: "info@tutortide.online",
   phone: "+254 751 935 486",

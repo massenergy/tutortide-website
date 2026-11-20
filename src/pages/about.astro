@@ -10,7 +10,8 @@ const initials = (name: string) => name.split(" ").map((w) => w[0]).join("");
 
 const company = [
   { label: "Registered name", value: site.legalName },
-  { label: "Founded", value: "2024" },
+  { label: "Company number", value: site.registration },
+  { label: "Incorporated", value: `${site.incorporated}, Kenya` },
   { label: "Based in", value: site.location },
   { label: "Postal address", value: site.postal },
   { label: "Email", value: site.email, href: `mailto:${site.email}` },
