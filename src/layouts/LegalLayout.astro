@@ -1,0 +1,21 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+// Layout for the Markdown legal pages (privacy, terms).
+const { frontmatter } = Astro.props;
+---
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+  <article class="legal mx-auto max-w-3xl px-5 py-20 md:px-8 md:py-28">
+    <slot />
+  </article>
+</BaseLayout>
+
+<style is:global>
+  .legal h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; }
+  .legal h2 { font-size: 1.5rem; font-weight: 700; margin: 2.5rem 0 0.75rem; }
+  .legal h3 { font-size: 1.125rem; font-weight: 700; margin: 1.5rem 0 0.5rem; }
+  .legal p, .legal li { color: var(--color-ink-soft); line-height: 1.7; }
+  .legal p { margin-bottom: 1rem; }
+  .legal ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 1rem; }
+  .legal li { margin-bottom: 0.4rem; }
+  .legal strong { color: var(--color-ink); }
+</style>
