@@ -24,7 +24,7 @@ export const flagship = {
 // Facts shown on the home and product pages. Update both numbers together.
 export const traction = { schools: "2", pupils: "1,200", country: "Kenya" };
 
-export type TeamMember = { name: string; role: string; bio: string; linkedin: string };
+export type TeamMember = { name: string; role: string; bio: string; linkedin: string; photo: string };
 
 export const team: TeamMember[] = [
   {
@@ -32,12 +32,14 @@ export const team: TeamMember[] = [
     role: "Co-founder & CEO",
     bio: "Builds and runs the Tutortide AI Student Companion.",
     linkedin: "https://www.linkedin.com/in/mike-makwani/",
+    photo: "/team/mike-makwani.jpg",
   },
   {
     name: "Job Makwani",
     role: "Co-founder & Director",
     bio: "Software engineer and founding director of Tutortide Limited.",
     linkedin: "https://www.linkedin.com/in/job-makwani/",
+    photo: "/team/job-makwani.jpg",
   },
 ];
 
