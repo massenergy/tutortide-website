@@ -1,9 +1,11 @@
-// Product marketing content. Sourced from the existing live sites
-// (Jinjing, Nyokavi, Tundamoto) and the Waterpro PRD. Placeholder items are
+// Product marketing content. Nyokavi and Tundamoto are sourced from their
+// existing sites and Waterpro from its PRD. Placeholder items are
 // marked TODO — swap for real approved copy/media before publish.
 //
 // Launch targets: apps live on subdomains (set up separately in Cloudflare).
 // Waterpro uses its two confirmed app URLs (MOWP Members + Admins).
+
+import { flagship, traction } from "./site";
 
 export type LaunchCTA = { label: string; url: string; primary?: boolean };
 export type Capability = { title: string; body: string };
@@ -39,66 +41,64 @@ export type ProductContent = {
 };
 
 export const jinjing: ProductContent = {
-  slug: "/jinjing",
-  name: "Jinjing",
-  seoTitle: "Jinjing — AI Student Companion",
+  slug: flagship.slug,
+  name: flagship.name,
+  seoTitle: flagship.name,
   seoDescription:
-    "Jinjing is the mastery engine for every student: personalized Socratic tutoring, teacher automation, and national analytics, grounded on Google Vertex AI.",
+    "AI tutoring for pupils, automatic marking of handwritten exam scripts for teachers, and progress reports for parents. In use at schools in Kenya.",
   eyebrow: "AI Student Companion",
-  heroTitle: "The mastery engine for every student.",
+  heroTitle: "A tutor for every pupil. Hours back for every teacher.",
   heroSubhead:
-    "Personalized Socratic tutoring, teacher automation, and national analytics. Jinjing bridges the digital divide with hallucination-free AI grounded on Google Vertex AI.",
-  launch: [
-    { label: "Launch app", url: "https://jinjing.tutortide.online", primary: true },
-    { label: "Watch demo", url: "https://jinjing.tutortide.online" }, // TODO: real demo video URL
-  ],
-  readoutLabel: "Session // mastery engine",
-  readout: [
-    { label: "Diagnose gaps", value: 82 },
-    { label: "Backtrack foundations", value: 60 },
-    { label: "Socratic tutoring", value: 74 },
-    { label: "Fact grounding", value: 95 },
-  ],
+    `Jinjing, the AI tutor, explains concepts, sets practice and gives instant feedback. Teachers get handwritten exam scripts marked, lessons planned and report forms prepared. In use at ${traction.schools} schools with ${traction.pupils} pupils in ${traction.country}.`,
+  launch: [{ label: "Open the app", url: flagship.app, primary: true }],
   stats: [
-    { value: "99.9%", caption: "Fact grounding" },
-    { value: "<1s", caption: "Tutoring latency" },
-    { value: "2.5x", caption: "Mastery improvement" },
-    { value: "1B+", caption: "Cognitive events" },
+    { value: traction.schools, caption: "Schools" },
+    { value: traction.pupils, caption: "Pupils" },
+    { value: traction.country, caption: "Where it is used" },
+    { value: "2024", caption: "Founded" },
   ],
   capabilityGroups: [
     {
-      eyebrow: "For students",
-      title: "Mastery and engagement.",
-      support:
-        "Features designed to solve real pain points for students in the modern classroom.",
+      eyebrow: "For pupils",
+      title: "Jinjing, a tutor that is always there.",
+      support: "Help with homework, test preparation and new concepts, aligned to the curriculum pupils are examined on.",
       items: [
-        { title: "Mastery engine", body: "The AI diagnoses gaps and backtracks to fix foundational issues before advancing." },
-        { title: "Engaging UX", body: "A gamified interface with streaks and rewards keeps learners hooked on progress." },
-        { title: "24/7 Socratic tutor", body: "A judgment-free, private space to ask any question at any time of day." },
-        { title: "Personalized plans", body: "Weekly schedules generated from performance data to reduce study anxiety." },
+        { title: "AI tutor", body: "Jinjing explains a concept step by step and answers follow-up questions." },
+        { title: "Practice and feedback", body: "Pupils practise and see straight away what was right and what to work on." },
+        { title: "Study plans", body: "A plan built from the pupil's own results, so revision goes where it is needed." },
+        { title: "Mastery certificates", body: "Pupils earn certificates for the skills they have mastered." },
       ],
     },
     {
-      eyebrow: "The engine room",
-      title: "Enterprise-grade AI architecture.",
-      support:
-        "Not just a wrapper — Jinjing uses the full spectrum of Google's GenAI stack for a zero-hallucination experience.",
+      eyebrow: "For teachers",
+      title: "Less marking. More teaching.",
       items: [
-        { title: "Vertex AI orchestrator", body: "The central brain routes between specialized agents for testing, discovery, and learning." },
-        { title: "Grounding & search", body: "Models are connected to a private curriculum datastore so every response is syllabus-aligned." },
-        { title: "Gemini Flash & Pro", body: "Flash gives instant tutoring fluidity; Pro delivers deep reasoning for teacher grading." },
-        { title: "Document AI auto-grader", body: "Ingests handwritten exams and marks them against schemes with computer vision." },
+        { title: "Auto marker", body: "Handwritten exam scripts are marked against the marking scheme. The teacher checks each script before results are published." },
+        { title: "Lesson planner", body: "Lesson plans drafted from the syllabus, ready for the teacher to edit." },
+        { title: "Class analyzer", body: "Shows which skills a class has and where the gaps are." },
+        { title: "Report forms", body: "Marks entry, remarks and end-of-term report forms in one place." },
+      ],
+    },
+    {
+      eyebrow: "For parents and schools",
+      title: "Clear progress. Children kept safe.",
+      items: [
+        { title: "Parent dashboard", body: "Parents see their child's progress, assignments and reports." },
+        { title: "Verifiable certificates", body: "Anyone can check that a certificate is genuine." },
+        { title: "Parental consent", body: "A child uses the AI tutor only after a parent or guardian has consented." },
+        { title: "Safeguarding review", body: "Worrying pupil messages are flagged to the school's safeguarding lead." },
       ],
     },
   ],
   faqs: [
-    { q: "Is student data used to train public models?", a: "No. Student data is never used to train public models, adhering to strict FERPA/COPPA and GDPR-S guidelines." },
-    { q: "Does it work on low bandwidth?", a: "Yes — Jinjing is optimized for low-bandwidth, offline-first use so students in underserved areas can learn." },
-    { q: "Who is Jinjing for?", a: "Students, parents, teachers, schools, and governments — a full-spectrum solution across the education ecosystem." },
+    { q: "Who is it for?", a: "Pupils, teachers, parents and school administrators." },
+    { q: "Where is it used today?", a: `In ${traction.schools} schools with ${traction.pupils} pupils in ${traction.country}.` },
+    { q: "Does a teacher check the AI's marking?", a: "Yes. The teacher reviews each marked script against the pupil's own work before results are published." },
+    { q: "Where is pupil data kept?", a: "On Google Cloud." },
+    { q: "Which languages does it support?", a: "English today. Support for more languages is in development." },
   ],
-  pricingNote: "Free for students to get started. Institutional and government plans available — talk to us.", // TODO: confirm pricing
-  ctaTitle: "Scale your impact. Secure the future.",
-  ctaLabel: "Launch Jinjing",
+  ctaTitle: "See it for yourself.",
+  ctaLabel: "Open the app",
 };
 
 export const nyokavi: ProductContent = {

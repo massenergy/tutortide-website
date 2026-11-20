@@ -2,15 +2,15 @@
 import GridCell from "./GridCell.astro";
 import MonoLabel from "./MonoLabel.astro";
 import Connector from "./Connector.astro";
-import { products } from "../data/site";
-interface Props { class?: string; }
-const { class: className = "" } = Astro.props;
+import { products, type ProductLink } from "../data/site";
+interface Props { class?: string; items?: ProductLink[]; }
+const { class: className = "", items = products } = Astro.props;
 ---
 <div class:list={["relative", className]}>
   <!-- Connective thread behind the row: shows through the gaps between cards (desktop). -->
   <Connector class="absolute inset-x-0 top-1/2 z-0 hidden h-[6px] lg:block" speed="14s" />
-  <div class="relative z-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-    {products.map((p, i) => (
+  <div class:list={["relative z-10 grid gap-4 sm:grid-cols-2", items.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"]}>
+    {items.map((p, i) => (
       <GridCell href={p.slug} travel index={i} class="p-6 transition-colors hover:border-accent">
         <div class="flex items-center justify-between">
           <MonoLabel>Product</MonoLabel>

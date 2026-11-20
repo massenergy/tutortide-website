@@ -8,7 +8,7 @@ import "@fontsource/inter/500.css";
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import { site } from "../data/site";
+import { site, team } from "../data/site";
 
 interface Props {
   title: string;
@@ -19,7 +19,7 @@ interface Props {
 }
 const {
   title,
-  description = "Tutortide Limited — secure technology and social innovation. Education software, AI, and community solutions.",
+  description = "Tutortide Limited is a Kenyan education technology company. We build the Tutortide AI Student Companion: AI tutoring and marking for schools.",
   image = "/og-default.png",
   jsonLd,
   noindex = false,
@@ -34,8 +34,12 @@ const organizationLd = {
   name: "Tutortide Limited",
   url: site.domain,
   email: site.email,
+  telephone: site.phone,
+  address: { "@type": "PostalAddress", addressLocality: "Merisho", addressCountry: "KE" },
+  sameAs: [site.linkedin],
+  founder: team.map((m) => ({ "@type": "Person", name: m.name, jobTitle: m.role, sameAs: m.linkedin })),
   description:
-    "Social enterprise building secure education software, AI, and community solutions for positive social impact.",
+    "Kenyan education technology company building the Tutortide AI Student Companion: AI tutoring and marking for schools.",
   foundingDate: "2024",
 };
 ---
