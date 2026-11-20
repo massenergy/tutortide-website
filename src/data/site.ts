@@ -21,8 +21,15 @@ export const flagship = {
   app: "https://aistudentcompanion.tutortide.online",
 };
 
-// Facts shown on the home and product pages. Update both numbers together.
-export const traction = { schools: "2", pupils: "1,200", country: "Kenya" };
+// Facts shown on the home, About and product pages. The product has not
+// launched in schools yet: when it has, change `launch` wording in `line`.
+export const traction = {
+  schools: "2",
+  pupils: "1,200",
+  country: "Kenya",
+  launch: "1 December 2026",
+  line: "Launching in 2 schools with 1,200 pupils in Kenya on 1 December 2026.",
+};
 
 export type TeamMember = { name: string; role: string; bio: string; linkedin: string; photo: string };
 

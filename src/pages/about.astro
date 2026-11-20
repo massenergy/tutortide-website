@@ -21,7 +21,7 @@ const principles = [
   { title: "Children's safety first", body: "Parental consent and safeguarding review are built into the product, not added on." },
   { title: "Aligned to the curriculum", body: "Tutoring and marking follow the syllabus pupils are examined on." },
   { title: "Teachers stay in charge", body: "A teacher checks the AI's marking against the pupil's own script before results are published." },
-  { title: "Built where it is used", body: "Built in Kenya, for the classrooms we know." },
+  { title: "Built in Kenya", body: "Built in Kenya, for the classrooms we know." },
 ];
 ---
 <BaseLayout
@@ -37,8 +37,7 @@ const principles = [
       <p class="mt-8 max-w-2xl text-lg text-ink-soft">
         Founded in 2024 and based in {site.location}, {site.legalName} builds the{" "}
         <a href={flagship.slug} class="underline hover:text-accent">{flagship.name}</a>:
-        AI tutoring for pupils and marking for teachers. It is in use at {traction.schools} schools
-        with {traction.pupils} pupils in {traction.country}.
+        AI tutoring for pupils and marking for teachers. {traction.line}
       </p>
     </div>
   </section>
