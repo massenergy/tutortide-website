@@ -41,6 +41,7 @@ const organizationLd = {
   description:
     "Kenyan education technology company building the Tutortide AI Student Companion: AI tutoring and marking for schools.",
   foundingDate: "2024",
+  logo: `${site.domain}/logo.png`,
 };
 ---
 <!doctype html>
@@ -48,7 +49,9 @@ const organizationLd = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
