@@ -67,6 +67,32 @@ const productLd = {
   <!-- Stats -->
   {p.stats && <StatBand stats={p.stats} class="border-b border-line" />}
 
+  <!-- Screenshots -->
+  {p.screenshots && (
+    <section class="border-b border-line bg-surface">
+      <div class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+        <SectionHeader
+          eyebrow="Inside the product"
+          title="See it working."
+          support="Screens from our demo school. The school, teachers and pupils shown are invented."
+        />
+        <div class="mt-12 grid gap-8 md:grid-cols-2">
+          {p.screenshots.map((s) => (
+            <figure>
+              <a href={s.src} target="_blank" rel="noopener" class="block border border-line transition-colors hover:border-accent">
+                <img src={s.src} alt={s.title} width="1600" height="1000" loading="lazy" class="block h-auto w-full" />
+              </a>
+              <figcaption class="mt-4">
+                <h3 class="font-display text-lg font-bold">{s.title}</h3>
+                <p class="mt-1 text-sm text-ink-soft">{s.caption}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- Capability groups -->
   {p.capabilityGroups.map((group, gi) => (
     <section class:list={["mx-auto max-w-7xl px-5 py-20 md:px-8", gi % 2 === 1 && "border-y border-line bg-surface"]}>

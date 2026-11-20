@@ -18,6 +18,7 @@ export type CapabilityGroup = {
 export type FeatureRow = { title: string; body: string };
 export type Faq = { q: string; a: string };
 export type Stat = { value: string; caption: string };
+export type Screenshot = { src: string; title: string; caption: string };
 export type ReadoutLine = { label: string; value: number };
 
 export type ProductContent = {
@@ -32,6 +33,7 @@ export type ProductContent = {
   readoutLabel?: string;
   readout?: ReadoutLine[];
   stats?: Stat[];
+  screenshots?: Screenshot[];
   capabilityGroups: CapabilityGroup[];
   features?: FeatureRow[];
   faqs?: Faq[];
@@ -56,6 +58,14 @@ export const jinjing: ProductContent = {
     { value: traction.pupils, caption: "Pupils" },
     { value: traction.country, caption: "Where it is used" },
     { value: "2024", caption: "Founded" },
+  ],
+  screenshots: [
+    { src: "/product/set-up-your-school.jpg", title: "A new school's first day", caption: "The first teacher to sign in gets a nine-step checklist, from choosing the curriculum to giving out the first assignment." },
+    { src: "/product/auto-marker-results.jpg", title: "Auto marker results", caption: "Handwritten scripts are read, matched to the pupil named on the paper and scored. Nothing reaches a pupil until the teacher returns it." },
+    { src: "/product/report-forms-board.jpg", title: "Report forms board", caption: "Subject by subject, the board shows whose marks and remarks are in for a class." },
+    { src: "/product/report-forms-class.jpg", title: "A class's report forms", caption: "One form per pupil, built from the term's marks in nine subjects. Nobody types a mark into the form." },
+    { src: "/product/report-form-pupil.jpg", title: "One pupil's report form", caption: "Each subject's composite mark with the teacher who taught it, ready to download." },
+    { src: "/product/report-form-comments.jpg", title: "Teachers' remarks", caption: "Every subject teacher writes their own comment, then the class teacher and the head teacher." },
   ],
   capabilityGroups: [
     {
