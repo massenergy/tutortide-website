@@ -47,19 +47,19 @@ export const jinjing: ProductContent = {
   name: flagship.name,
   seoTitle: flagship.name,
   seoDescription:
-    "AI tutoring for pupils, automatic marking of handwritten exam scripts for teachers, and progress reports for parents. In use at schools in Kenya.",
+    "AI tutoring for pupils, automatic marking of handwritten exam scripts for teachers, and progress reports for parents. Launching in schools in Kenya in December 2026.",
   eyebrow: "AI Student Companion",
   heroTitle: "A tutor for every pupil. Hours back for every teacher.",
   heroSubhead:
-    `Jinjing, the AI tutor, explains concepts, sets practice and gives instant feedback. Teachers get handwritten exam scripts marked, lessons planned and report forms prepared. In use at ${traction.schools} schools with ${traction.pupils} pupils in ${traction.country}.`,
+    `Jinjing, the AI tutor, explains concepts, sets practice and gives instant feedback. Teachers get handwritten exam scripts marked, lessons planned and report forms prepared. ${traction.line}`,
   launch: [
     { label: "Open the app", url: flagship.app, primary: true },
     { label: "Try the demo", url: "/demo" },
   ],
   stats: [
-    { value: traction.schools, caption: "Schools" },
-    { value: traction.pupils, caption: "Pupils" },
-    { value: traction.country, caption: "Where it is used" },
+    { value: traction.schools, caption: "Schools at launch" },
+    { value: traction.pupils, caption: "Pupils at launch" },
+    { value: traction.country, caption: "Where it launches" },
     { value: "2024", caption: "Founded" },
   ],
   screenshots: [
@@ -105,7 +105,7 @@ export const jinjing: ProductContent = {
   ],
   faqs: [
     { q: "Who is it for?", a: "Pupils, teachers, parents and school administrators." },
-    { q: "Where is it used today?", a: `In ${traction.schools} schools with ${traction.pupils} pupils in ${traction.country}.` },
+    { q: "Where is it being used?", a: traction.line },
     { q: "Does a teacher check the AI's marking?", a: "Yes. The teacher reviews each marked script against the pupil's own work before results are published." },
     { q: "Where is pupil data kept?", a: "On Google Cloud." },
     { q: "Which languages does it support?", a: "English today. Support for more languages is in development." },

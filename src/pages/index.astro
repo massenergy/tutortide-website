@@ -9,8 +9,9 @@ import CTABand from "../components/CTABand.astro";
 import { site, flagship, traction, products } from "../data/site";
 
 const glance = [
-  { label: "Schools", value: traction.schools },
-  { label: "Pupils", value: traction.pupils },
+  { label: "Launch", value: traction.launch },
+  { label: "Schools at launch", value: traction.schools },
+  { label: "Pupils at launch", value: traction.pupils },
   { label: "Country", value: traction.country },
   { label: "Founded", value: "2024" },
   { label: "Pupil data", value: "Google Cloud" },
@@ -38,7 +39,7 @@ const others = products.filter((p) => p.slug !== flagship.slug);
 ---
 <BaseLayout
   title="Tutortide"
-  description={`Tutortide Limited is a Kenyan education technology company. Our AI Student Companion tutors pupils and marks exam scripts for teachers, in use at ${traction.schools} schools with ${traction.pupils} pupils.`}
+  description={`Tutortide Limited is a Kenyan education technology company. Our AI Student Companion tutors pupils and marks exam scripts for teachers. ${traction.line}`}
 >
   <!-- Hero -->
   <section class="border-b border-line">
@@ -50,8 +51,7 @@ const others = products.filter((p) => p.slug !== flagship.slug);
         </h1>
         <p class="mt-8 max-w-xl text-lg text-ink-soft">
           {site.legalName} is a Kenyan education technology company. Our AI Student Companion
-          tutors pupils, marks handwritten exam scripts and keeps parents informed. It is in use
-          at {traction.schools} schools with {traction.pupils} pupils in {traction.country}.
+          tutors pupils, marks handwritten exam scripts and keeps parents informed. {traction.line}
         </p>
         <div class="mt-10 flex flex-wrap gap-4">
           <Button href={flagship.slug} variant="solid">See the product</Button>
