@@ -6,8 +6,6 @@ import SectionHeader from "../components/SectionHeader.astro";
 import CTABand from "../components/CTABand.astro";
 import { site, team, flagship, traction } from "../data/site";
 
-const initials = (name: string) => name.split(" ").map((w) => w[0]).join("");
-
 const company = [
   { label: "Registered name", value: site.legalName },
   { label: "Company number", value: site.registration },
@@ -50,9 +48,7 @@ const principles = [
     <div class="mt-12 grid gap-4 md:grid-cols-2">
       {team.map((m) => (
         <GridCell class="flex gap-6 p-8">
-          <span class="flex h-16 w-16 shrink-0 items-center justify-center border border-line font-display text-xl font-bold text-accent" aria-hidden="true">
-            {initials(m.name)}
-          </span>
+          <img src={m.photo} alt={m.name} width="96" height="96" class="h-24 w-24 shrink-0 border border-line object-cover" />
           <div>
             <h3 class="text-xl font-bold">{m.name}</h3>
             <p class="mono-label mt-1">{m.role}</p>

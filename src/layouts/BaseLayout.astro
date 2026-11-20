@@ -37,7 +37,7 @@ const organizationLd = {
   telephone: site.phone,
   address: { "@type": "PostalAddress", postOfficeBoxNumber: "237", postalCode: "00208", addressLocality: "Ngong", addressCountry: "KE" },
   sameAs: [site.linkedin],
-  founder: team.map((m) => ({ "@type": "Person", name: m.name, jobTitle: m.role, sameAs: m.linkedin })),
+  founder: team.map((m) => ({ "@type": "Person", name: m.name, jobTitle: m.role, sameAs: m.linkedin, image: site.domain + m.photo })),
   description:
     "Kenyan education technology company building the Tutortide AI Student Companion: AI tutoring and marking for schools.",
   foundingDate: "2024-10-29",
