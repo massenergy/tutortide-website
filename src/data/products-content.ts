@@ -52,7 +52,10 @@ export const jinjing: ProductContent = {
   heroTitle: "A tutor for every pupil. Hours back for every teacher.",
   heroSubhead:
     `Jinjing, the AI tutor, explains concepts, sets practice and gives instant feedback. Teachers get handwritten exam scripts marked, lessons planned and report forms prepared. In use at ${traction.schools} schools with ${traction.pupils} pupils in ${traction.country}.`,
-  launch: [{ label: "Open the app", url: flagship.app, primary: true }],
+  launch: [
+    { label: "Open the app", url: flagship.app, primary: true },
+    { label: "Try the demo", url: "/demo" },
+  ],
   stats: [
     { value: traction.schools, caption: "Schools" },
     { value: traction.pupils, caption: "Pupils" },

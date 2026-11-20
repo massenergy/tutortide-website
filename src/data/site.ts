@@ -61,5 +61,6 @@ export const companyNav = [
   { name: "About", href: "/about" },
   { name: "Team", href: "/about#team" },
   { name: "Products", href: "/products" },
+  { name: "Demo", href: "/demo" },
   { name: "Contact", href: "/contact" },
 ];
