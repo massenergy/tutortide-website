@@ -35,7 +35,7 @@ const organizationLd = {
   url: site.domain,
   email: site.email,
   telephone: site.phone,
-  address: { "@type": "PostalAddress", addressLocality: "Merisho", addressCountry: "KE" },
+  address: { "@type": "PostalAddress", postOfficeBoxNumber: "237", postalCode: "00208", addressLocality: "Ngong", addressCountry: "KE" },
   sameAs: [site.linkedin],
   founder: team.map((m) => ({ "@type": "Person", name: m.name, jobTitle: m.role, sameAs: m.linkedin })),
   description:
