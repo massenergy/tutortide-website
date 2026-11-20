@@ -31,18 +31,17 @@ const numbered = [...companyNav, ...products.map((p) => ({ name: p.name, href: p
 
       <div class="md:col-span-3">
         <p class="mono-label mb-4">Contact</p>
-        <a
-          href={`mailto:${site.email}`}
-          class="text-sm transition-colors hover:text-accent"
-        >
-          {site.email}
-        </a>
+        <ul class="space-y-2 text-sm">
+          <li><a href={`mailto:${site.email}`} class="transition-colors hover:text-accent">{site.email}</a></li>
+          <li><a href={`tel:${site.phone.replaceAll(" ", "")}`} class="transition-colors hover:text-accent">{site.phone}</a></li>
+          <li><a href={site.linkedin} target="_blank" rel="noopener" class="transition-colors hover:text-accent">LinkedIn ↗</a></li>
+        </ul>
       </div>
     </div>
 
     <div class="mt-16 flex flex-col gap-2 border-t border-line pt-6 md:flex-row md:items-center md:justify-between">
-      <p class="mono-label">© {year} Tutortide Limited</p>
-      <p class="mono-label">Empowering through secure technology &amp; social innovation</p>
+      <p class="mono-label">© {year} {site.legalName}</p>
+      <p class="mono-label">{site.location}</p>
     </div>
   </div>
 </footer>

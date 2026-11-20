@@ -1,12 +1,42 @@
-// Company-level site data. Product marketing content lives in the content
-// collection (Phase 5); this is just what the nav/footer need.
+// Company-level site data: what the nav, footer, About and Contact pages need.
 
 export const site = {
   name: "Tutortide",
+  legalName: "Tutortide Limited",
   domain: "https://tutortide.online",
   email: "info@tutortide.online",
-  tagline: "Secure technology & social innovation",
+  phone: "+254 751 935 486",
+  location: "Merisho, Kenya",
+  linkedin: "https://www.linkedin.com/company/tutortide-limited",
+  tagline: "AI tutoring and marking for schools. Built in Kenya.",
 };
+
+// The flagship product. `app` is the live application.
+export const flagship = {
+  name: "Tutortide AI Student Companion",
+  slug: "/jinjing",
+  app: "https://aistudentcompanion.tutortide.online",
+};
+
+// Facts shown on the home and product pages. Update both numbers together.
+export const traction = { schools: "2", pupils: "1,200", country: "Kenya" };
+
+export type TeamMember = { name: string; role: string; bio: string; linkedin: string };
+
+export const team: TeamMember[] = [
+  {
+    name: "Mike Makwani",
+    role: "Co-founder & CEO",
+    bio: "Builds and runs the Tutortide AI Student Companion.",
+    linkedin: "https://www.linkedin.com/in/mike-makwani/",
+  },
+  {
+    name: "Job Makwani",
+    role: "Co-founder & Director",
+    bio: "Software engineer and founding director of Tutortide Limited.",
+    linkedin: "https://www.linkedin.com/in/job-makwani/",
+  },
+];
 
 export type ProductLink = {
   name: string;
@@ -15,7 +45,7 @@ export type ProductLink = {
 };
 
 export const products: ProductLink[] = [
-  { name: "Jinjing", slug: "/jinjing", blurb: "AI student companion" },
+  { name: "AI Student Companion", slug: flagship.slug, blurb: "Meet Jinjing, your AI tutor" },
   { name: "Nyokavi", slug: "/nyokavi", blurb: "Alternative credit intelligence" },
   { name: "Waterpro", slug: "/waterpro", blurb: "Billing for water projects" },
   { name: "Tundamoto", slug: "/tundamoto", blurb: "Farm-to-Europe traceability" },
@@ -24,6 +54,7 @@ export const products: ProductLink[] = [
 export const companyNav = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
+  { name: "Team", href: "/about#team" },
   { name: "Products", href: "/products" },
   { name: "Contact", href: "/contact" },
 ];

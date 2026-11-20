@@ -71,7 +71,7 @@ const productLd = {
   {p.capabilityGroups.map((group, gi) => (
     <section class:list={["mx-auto max-w-7xl px-5 py-20 md:px-8", gi % 2 === 1 && "border-y border-line bg-surface"]}>
       <SectionHeader eyebrow={group.eyebrow} title={group.title} support={group.support} />
-      <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div class:list={["mt-12 grid gap-4 md:grid-cols-2", group.items.length % 4 === 0 ? "lg:grid-cols-4" : "lg:grid-cols-3"]}>
         {group.items.map((item, i) => (
           <GridCell class="p-6">
             <div class="flex items-baseline justify-between">
