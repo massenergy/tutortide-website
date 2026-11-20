@@ -7,6 +7,7 @@ export const site = {
   email: "info@tutortide.online",
   phone: "+254 751 935 486",
   location: "Merisho, Kenya",
+  postal: "PO Box 237-00208, Ngong, Kenya",
   linkedin: "https://www.linkedin.com/company/tutortide-limited",
   tagline: "AI tutoring and marking for schools. Built in Kenya.",
 };

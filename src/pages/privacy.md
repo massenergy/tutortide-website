@@ -6,14 +6,14 @@ description: How Tutortide Limited collects, uses and protects personal informat
 
 # Privacy Policy
 
-**Last Updated:** October 18, 2025
+**Last Updated:** November 20, 2026
 
 **Tutortide Limited** ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our AI Student Companion platform ("Services").
 
 ## 1. Data Controller Information
 
 For the purpose of GDPR and other data protection laws, the data controller is:
-- **Name:** Michael Stephen
+- **Name:** Mike Makwani
 - **Entity:** Tutortide Limited
 - **Address:** PO Box 237-00208 Ngong, Kenya
 - **Email:** info@tutortide.online

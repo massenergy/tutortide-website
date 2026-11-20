@@ -35,8 +35,8 @@ The AI Student Companion is a platform designed to provide personalized learning
 
 ## 4. Data Privacy and Ownership
 
-- **Student Data:** All student data is owned by the respective School or Parent who created the account. We are a service provider and process this data on your behalf. Please see our **Data Processing Agreement (DPA)** for more details on how we handle this data.
-- **Privacy:** Our collection and use of personal information are governed by our **Privacy Policy**.
+- **Student Data:** All student data is owned by the respective School or Parent who created the account. We are a service provider and process this data on your behalf. Please see our **[Data Processing Agreement (DPA)](/dpa)** for more details on how we handle this data.
+- **Privacy:** Our collection and use of personal information are governed by our **[Privacy Policy](/privacy)**.
 
 ## 5. User Rights
 
