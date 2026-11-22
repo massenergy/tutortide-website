@@ -8,64 +8,58 @@ import CTABand from "../components/CTABand.astro";
 import { flagship } from "../data/site";
 
 const demoUrl = "https://ai-student-companion-demo.web.app";
-const password = "password123";
 const csv = "/demo/grade7-pupils.csv";
+const tryUrl = `${demoUrl}/try`;
 
-const accounts = [
-  { who: "First teacher in a new school", name: "Grace Njambi, Baraka Academy", email: "new.teacher@barakademo.edu", shows: "What a teacher meets on day one: a new password, the terms, then “Set up your school”." },
-  { who: "Teacher in a running school", name: "Faith Achieng, Tumaini Junior Secondary", email: "faith.achieng@tumainidemo.edu", shows: "Class teacher of 7A and Maths teacher. Adding pupils, the auto marker and report forms." },
-  { who: "Pupil in a school", name: "Cary Grant, class 7A", email: "cary.grant.7a@pupils.tumainidemo.edu", shows: "A pupil's home, assignments and returned exams." },
-  { who: "Parent teaching at home", name: "Emma Carter", email: "homeschool.parent@demo.com", shows: "Two children, Grades 4 and 6, with no school." },
-  { who: "Adult learner", name: "Daniel Hughes", email: "adult.learner@demo.com", shows: "Learning for himself on day 5 of the free trial, with Jinjing the AI tutor." },
+const cards = [
+  "Class teacher, 7A Maths", "Head teacher", "Pupil, 7A", "Second pupil, 7A", "Parent of a 7A pupil",
+  "New teacher, Baraka Academy", "Parent teaching at home", "Adult learner", "Ministry of Education",
 ];
 
 const walks = [
   {
     title: "A new school's first day",
-    account: "new.teacher@barakademo.edu",
+    card: "New teacher, Baraka Academy",
     time: "2 minutes",
     steps: [
-      "Sign in. The app asks you to set a new password (at least 10 characters, including one of @$!%*?&).",
+      "The app asks you to set a new password (at least 10 characters, including one of @$!%*?&).",
       "Read the terms and press Accept and Continue.",
       "You are now the school's admin. The home screen shows “Set up your school”: nine steps, from choosing the curriculum to giving out the first assignment. Later steps wait until the earlier ones are done.",
     ],
-    note: "This works once between resets. After the first visitor signs in, Grace is no longer new and her password has changed. If the sign-in fails, come back after the next reset.",
+    note: "This works once in your copy: after you have set the password, Grace is no longer new. Use the password you chose to come back to her today.",
   },
   {
     title: "Add a class of pupils from one file",
-    account: "faith.achieng@tumainidemo.edu",
+    card: "Class teacher, 7A Maths",
     time: "3 minutes",
     steps: [
       "Download the sample file (the button is below this list).",
-      "Sign in. Open Students, then Classrooms Register, then 7A. It has 14 pupils.",
+      "Open Students, then Classrooms Register, then 7A. It has 14 pupils.",
       "Open Students, then Add Many Students At Once. The page shows the columns the file needs.",
       "Drop the file into the box and press Upload CSV & Send Invites.",
       "Open Classrooms Register and 7A again. Five new pupils are there, so 7A has 19.",
     ],
-    note: "The page shows no confirmation after the upload; the register is the proof. The file works once between resets: a second upload says the pupils already exist. No email leaves the demo.",
+    note: "The page shows no confirmation after the upload; the register is the proof. The file works once in your copy: a second upload says the pupils already exist. No email leaves the demo.",
     download: true,
   },
   {
     title: "The auto marker",
-    account: "faith.achieng@tumainidemo.edu, then cary.grant.7a@pupils.tumainidemo.edu",
+    card: "Class teacher, 7A Maths",
     time: "5 minutes",
+    soon: "Coming soon in your own copy: two handwritten scripts already marked, waiting for the teacher to check. Until then, this walk has nothing to review.",
     steps: [
-      "Sign in as Faith. Open Auto marker. Under “Waiting to be checked”, open Mathematics - Homework.",
-      "Two handwritten scripts have been marked. Each pupil's name was read from the paper and matched to the class list.",
-      "Press Review beside Cary Grant. Every question shows the question from the paper, the marking scheme's answer, the pupil's answer as the marker read it, and the mark.",
-      "Compare a few answers with the pupil's own pages and change any mark you disagree with. The teacher has the last word.",
-      "Go back and press Return. Nothing reaches a pupil before this.",
-      "Sign out, then sign in as Cary Grant. Open Returned exams to see what the pupil sees.",
-      "As Faith again, open More power tools, then Class analyzer, for the class's results by topic.",
+      "Open Auto marker. Under “Waiting to be checked”, open the marked scripts.",
+      "Every question shows the question from the paper, the marking scheme's answer, the pupil's answer as the marker read it, and the mark.",
+      "Change any mark you disagree with. Anything the marker was unsure of is yours to decide: the teacher has the last word.",
+      "Press Return. Nothing reaches a pupil before this. Then switch role to the pupil to see what they see.",
     ],
-    note: "If another visitor has already returned the scripts, start from step 6.",
   },
   {
     title: "End-of-term report forms",
-    account: "faith.achieng@tumainidemo.edu",
+    card: "Class teacher, 7A Maths",
     time: "4 minutes",
     steps: [
-      "Sign in. Open Report forms and choose Grade 7 7A, Term 1 2026, End of term.",
+      "Open Report forms and choose Grade 7 7A, Term 1 2026, End of term.",
       "The board lists nine subjects with the teacher for each, and whether their marks and remarks are in. Eight are complete; Mathematics is waiting for Faith.",
       "Open Generate reports for the same class: one row per pupil, built from the term's homework, quizzes and exams. Nobody types a mark into a form.",
       "Open one pupil's form to see each subject's mark, the teacher who taught it and that teacher's comment.",
@@ -74,20 +68,20 @@ const walks = [
   },
   {
     title: "A parent teaching at home",
-    account: "homeschool.parent@demo.com",
+    card: "Parent teaching at home",
     time: "2 minutes",
     steps: [
-      "Sign in. The home screen shows Emma's two children, Liam (Grade 4) and Ava (Grade 6), and her first steps.",
+      "The home screen shows Emma's two children, Liam (Grade 4) and Ava (Grade 6), and her first steps.",
       "Each child shows “needs your consent”. A child cannot use the AI tutor until a parent has agreed. Open the consent form to read what is asked.",
       "Open Progress and pick a child: certificates, marked papers and report forms appear here.",
     ],
   },
   {
     title: "An adult learner",
-    account: "adult.learner@demo.com",
+    card: "Adult learner",
     time: "2 minutes",
     steps: [
-      "Sign in. Daniel learns for himself, so nobody else gives consent for him.",
+      "Daniel learns for himself, so nobody else gives consent for him.",
       "Open Jinjing AI tutor and ask a question.",
       "Find the subscription card: the free trial, the days left and the price.",
     ],
@@ -96,20 +90,19 @@ const walks = [
 ---
 <BaseLayout
   title="Try the demo"
-  description="Sign in to the Tutortide AI Student Companion demo as a teacher, pupil, parent or adult learner. Accounts, step-by-step walks and reset times."
+  description="Try the Tutortide AI Student Companion in your own private copy of a school: one click signs you in as a teacher, a pupil, a parent or an adult learner. Step-by-step walks."
 >
   <section class="border-b border-line">
     <div class="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
       <MonoLabel class="mb-6 block">{flagship.name}</MonoLabel>
       <h1 class="max-w-4xl text-4xl font-bold leading-[1.05] md:text-6xl">Try it yourself.</h1>
       <p class="mt-8 max-w-2xl text-lg text-ink-soft">
-        The demo is a full copy of the product with an invented school in it. Sign in as a
-        teacher, a pupil, a parent or an adult learner and follow the walks below. No account
-        of your own is needed.
+        Press Try it now and you get your own private copy of a school, with invented teachers,
+        pupils and parents. One click signs you in as any of them. Nobody else sees what you do.
       </p>
       <div class="mt-10 flex flex-wrap gap-4">
-        <Button href={demoUrl} variant="solid" target="_blank" rel="noopener">Open the demo ↗</Button>
-        <Button href="#accounts" variant="outline">See the accounts</Button>
+        <Button href={tryUrl} variant="solid" target="_blank" rel="noopener">Try it now ↗</Button>
+        <Button href="#walks" variant="outline">What to try</Button>
       </div>
     </div>
   </section>
@@ -119,50 +112,48 @@ const walks = [
     <SectionHeader eyebrow="Before you start" title="Three things to know." />
     <div class="mt-12 grid gap-4 md:grid-cols-3">
       <GridCell class="p-8">
-        <MonoLabel>Password</MonoLabel>
-        <p class="mt-4 font-mono text-2xl font-medium">{password}</p>
-        <p class="mt-3 text-ink-soft">The same for every account below.</p>
-      </GridCell>
-      <GridCell class="p-8">
-        <MonoLabel>Resets</MonoLabel>
-        <p class="mt-4 font-display text-2xl font-bold">05:00 and 14:00</p>
+        <MonoLabel>Your own copy</MonoLabel>
+        <p class="mt-4 font-display text-2xl font-bold">Nobody else is in it</p>
         <p class="mt-3 text-ink-soft">
-          Nairobi time, every day (02:00 and 11:00 UTC). A reset puts every account and all the
-          data back as described here, and removes anything visitors added.
+          Each visitor gets a private copy of the school. Add pupils, change marks, send report
+          forms: it touches no one else's copy. Everyone in it is invented.
         </p>
       </GridCell>
       <GridCell class="p-8">
-        <MonoLabel>Shared</MonoLabel>
-        <p class="mt-4 font-display text-2xl font-bold">One demo for everyone</p>
+        <MonoLabel>Cleared each night</MonoLabel>
+        <p class="mt-4 font-display text-2xl font-bold">05:00 Nairobi time</p>
         <p class="mt-3 text-ink-soft">
-          Another visitor may have done a step before you. If something is not as described,
-          it will be after the next reset. Everyone in the demo is invented.
+          02:00 UTC. Your copy lasts the day. The email we send you brings you back to it until
+          then; after that, press Try it now again for a fresh one.
+        </p>
+      </GridCell>
+      <GridCell class="p-8">
+        <MonoLabel>Your email</MonoLabel>
+        <p class="mt-4 font-display text-2xl font-bold">Two emails at most</p>
+        <p class="mt-3 text-ink-soft">
+          Your demo link, and one more the next day asking how it went. Nothing else.
         </p>
       </GridCell>
     </div>
   </section>
 
-  <!-- Accounts -->
+  <!-- How it works (id kept: older links point to #accounts) -->
   <section id="accounts" class="scroll-mt-24 border-y border-line bg-surface">
     <div class="mx-auto max-w-7xl px-5 py-20 md:px-8">
-      <SectionHeader eyebrow="Accounts" title="Who you can sign in as." support={`Every account uses the password ${password}.`} />
-      <div class="mt-12 divide-y divide-line border-y border-line">
-        {accounts.map((a) => (
-          <div class="grid gap-2 py-6 md:grid-cols-12 md:gap-6">
-            <div class="md:col-span-3">
-              <h3 class="font-display text-lg font-bold">{a.who}</h3>
-              <p class="text-sm text-ink-soft">{a.name}</p>
-            </div>
-            <p class="break-all font-mono text-sm md:col-span-4 md:pt-1">{a.email}</p>
-            <p class="text-ink-soft md:col-span-5">{a.shows}</p>
-          </div>
+      <SectionHeader eyebrow="How it works" title="Who you can be." support="Type your name and email, pass a quick check, then pick a card. A Switch role button brings you back to the cards at any time." />
+      <ul class="mt-12 grid gap-3 md:grid-cols-3">
+        {cards.map((c) => (
+          <li class="border border-line px-5 py-4 font-display font-bold">{c}</li>
         ))}
+      </ul>
+      <div class="mt-10">
+        <Button href={tryUrl} variant="solid" target="_blank" rel="noopener">Try it now ↗</Button>
       </div>
     </div>
   </section>
 
   <!-- Walks -->
-  <section class="mx-auto max-w-7xl px-5 py-20 md:px-8">
+  <section id="walks" class="scroll-mt-24 mx-auto max-w-7xl px-5 py-20 md:px-8">
     <SectionHeader eyebrow="Walks" title="What to try, step by step." support="Each walk takes a few minutes. Do them in any order." />
     <div class="mt-12 grid gap-4">
       {walks.map((w, i) => (
@@ -173,7 +164,8 @@ const walks = [
             </h3>
             <MonoLabel>{w.time}</MonoLabel>
           </div>
-          <p class="mt-3 break-all font-mono text-sm text-ink-soft">Sign in as {w.account}</p>
+          <p class="mt-3 font-mono text-sm text-ink-soft">Card: {w.card}</p>
+          {w.soon && <p class="mt-4 max-w-3xl border-l border-accent pl-4 font-medium">{w.soon}</p>}
           <ol class="mt-6 max-w-3xl list-decimal space-y-3 pl-5 text-ink-soft marker:font-mono marker:text-xs">
             {w.steps.map((s) => <li class="pl-2">{s}</li>)}
           </ol>
